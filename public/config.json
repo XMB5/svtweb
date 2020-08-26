@@ -1,0 +1,1200 @@
+{
+  "thresholds": [
+    {
+      "text": "$0",
+      "percent": 0,
+      "color": "darkgray"
+    },
+    {
+      "text": "$1",
+      "percent": 50,
+      "color": "green"
+    },
+    {
+      "text": "$2",
+      "percent": 70,
+      "color": "hsla(40, 100%, 50%, 1)"
+    },
+    {
+      "text": "$3",
+      "percent": 100,
+      "color": "magenta"
+    }
+  ],
+  "delays": {
+    "waitForAdvice": {
+      "min": 1000,
+      "max": 2000
+    },
+    "waitForCorrect": {
+      "min": 1000,
+      "max": 2000
+    },
+    "startNextRound": {
+      "min": 2000,
+      "max": 4000
+    }
+  },
+  "rounds": [
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": true
+    },
+    {
+      "correctSide": 0,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    },
+    {
+      "correctSide": 1,
+      "adviceCorrect": false
+    }
+  ]
+}
