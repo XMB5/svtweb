@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry: './websrc/public/index.js',
+    entry: './websrc/index.js',
     output: {
         filename: 'index.js',
         path: path.resolve(__dirname, 'dist'),
@@ -18,7 +18,7 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             title: 'svtweb',
-            template: './websrc/public/index.ejs'
+            template: './websrc/index.ejs'
         })
     ]
 };
