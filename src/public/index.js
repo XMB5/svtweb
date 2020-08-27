@@ -1,6 +1,15 @@
+import '@fortawesome/fontawesome-free'
+import 'jquery/dist/jquery'
+import 'bootstrap/js/src/button'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import './index.css'
+
+console.log('svtweb index.js loaded');
+
 $(document).ready(async function() {
 
     let config;
+    let eventLog;
 
     const STATUS = {
         WAIT_FOR_ADVICE: 'Wait for advice...',
@@ -154,14 +163,21 @@ $(document).ready(async function() {
     async function runRound(round) {
         console.log('run round %o', round);
 
+        recordEvent('waitForAdvice', {
+            round
+        });
         setStatusText(STATUS.WAIT_FOR_ADVICE)
         await delay(config.delays.waitForAdvice);
 
+        recordEvent('showAdvice');
         setStatusText(STATUS.CHOOSE);
         showAdviceForSide(round.adviceCorrect ? round.correctSide : otherSide(round.correctSide));
         setButtonsDisabled(false);
-        const chosenSide = await waitForSideChosen();
 
+        const chosenSide = await waitForSideChosen();
+        recordEvent('chooseSide', {
+            side: chosenSide
+        });
         const selectedButtonEl = document.activeElement;
         if (selectedButtonEl) {
             selectedButtonEl.blur();
@@ -170,6 +186,7 @@ $(document).ready(async function() {
         setStatusText(STATUS.WAIT_FOR_CORRECT);
         await delay(config.delays.waitForCorrect);
 
+        recordEvent('showCorrect');
         const correct = chosenSide === round.correctSide;
         setStatusText(correct ? STATUS.CORRECT : STATUS.INCORRECT);
         showCorrectSide(round.correctSide);
@@ -181,10 +198,24 @@ $(document).ready(async function() {
         return correct;
     }
 
+    function recordEvent(type, data) {
+        const now = performance.now();
+        const event = {
+            type,
+            ms: now
+        };
+        if (data) {
+            event.data = data;
+        }
+        eventLog.push(event);
+    }
+
     async function main() {
         config = await $.ajax('config.json', {
             dataType: 'json'
         });
+
+        eventLog = [];
 
         for (let threshold of config.thresholds) {
             if (threshold.percent > 0) {
@@ -198,6 +229,10 @@ $(document).ready(async function() {
 
         const numRounds = config.rounds.length;
         let points = 0;
+
+        recordEvent('start', {
+            msSince1970: Date.now()
+        });
 
         for (let i = 0; i < numRounds; i++) {
             const round = config.rounds[i];
@@ -213,6 +248,6 @@ $(document).ready(async function() {
         await main();
     } catch (e) {
         alert('Critical Error: ' + e.toString() + '\nDetails logged to console');
-        console.error(e);
+        console.error('critical error %o', e);
     }
 });
