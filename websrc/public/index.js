@@ -1,8 +1,8 @@
-import '@fortawesome/fontawesome-free'
-import 'jquery/dist/jquery'
-import 'bootstrap/js/src/button'
+import $ from 'jquery/dist/jquery'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './index.css'
+import { icon } from '@fortawesome/fontawesome-svg-core'
+import { faUser } from '@fortawesome/free-solid-svg-icons'
 
 console.log('svtweb index.js loaded');
 
@@ -24,8 +24,8 @@ $(document).ready(async function() {
         RIGHT: 1
     };
 
-    const ICON_NAME = {
-        ADVISOR: 'user'
+    const ICON = {
+        ADVISOR: faUser
     };
 
     const OUTLINE_CLASS = {
@@ -57,27 +57,25 @@ $(document).ready(async function() {
         statusText.text(text);
     }
 
-    function genIcon(faIconName, color) {
-        const icon = $('<i class="fas big-text mx-2">');
-        if (color) {
-            icon.css('color', color);
-        }
-        icon.addClass('fa-' + faIconName);
-        return icon;
+    function genIcon(faIcon) {
+        const node = icon(faIcon, {
+            transform: {
+                size: 48 //starts at 16
+            }
+        }).node[0];
+        return $(node).addClass('mx-4');
     }
 
     /**
-     *
-     * @param faIconName Font Awesome icon name
-     * @param color CSS color
+     * @param faIcon Font Awesome icon
      * @see https://fontawesome.com/cheatsheet
      */
-    function addIconLeft(faIconName, color) {
-        leftIcons.append(genIcon(faIconName, color));
+    function addIconLeft(faIcon) {
+        leftIcons.append(genIcon(faIcon));
     }
 
-    function addIconRight(faIconName, color) {
-        rightIcons.prepend(genIcon(faIconName, color));
+    function addIconRight(faIcon) {
+        rightIcons.prepend(genIcon(faIcon));
     }
 
     function clearIcons() {
@@ -91,9 +89,9 @@ $(document).ready(async function() {
      */
     function showAdviceForSide(side) {
         if (side === SIDE.LEFT) {
-            addIconLeft(ICON_NAME.ADVISOR);
+            addIconLeft(ICON.ADVISOR);
         } else {
-            addIconRight(ICON_NAME.ADVISOR);
+            addIconRight(ICON.ADVISOR);
         }
     }
 
@@ -211,7 +209,7 @@ $(document).ready(async function() {
     }
 
     async function main() {
-        config = await $.ajax('config.json', {
+        config = await $.ajax('/websrc/public/config.json', {
             dataType: 'json'
         });
 
