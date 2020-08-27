@@ -209,7 +209,7 @@ $(document).ready(async function() {
     }
 
     async function main() {
-        config = await $.ajax('/websrc/public/config.json', {
+        config = await $.ajax('/api/config', {
             dataType: 'json'
         });
 

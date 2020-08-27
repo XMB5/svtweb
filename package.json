@@ -1,4 +1,10 @@
 {
+  "repository": {},
+  "license": "",
+  "scripts": {
+    "dev": "webpack-dev-server --hot --config webpack.config.js --mode development",
+    "build": "rimraf ./dist && webpack --config webpack.config.js --mode production"
+  },
   "dependencies": {
     "@hapi/hapi": "^20.0.0"
   },
@@ -10,6 +16,7 @@
     "html-loader": "^1.3.0",
     "html-webpack-plugin": "^4.3.0",
     "jquery": "^3.5.1",
+    "rimraf": "^3.0.2",
     "style-loader": "^1.2.1",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
