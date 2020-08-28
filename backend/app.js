@@ -45,8 +45,8 @@ const init = async () => {
         path: '/api/submitData',
         handler: async (request, h) => {
             const submissionObj = request.payload;
-            await submissionSaver.saveSubmission(submissionObj);
-            return h.response();
+            const fileName = await submissionSaver.saveSubmission(submissionObj);
+            return {fileName};
         },
         config: {
             payload: {

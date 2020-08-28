@@ -27,7 +27,7 @@ class SubmissionSaver {
                     flag: 'wx' //fail if exists
                 });
                 log('submission saved to', filePath);
-                return;
+                return fileName;
             } catch (e) {
                 if (e.code === 'EEXIST') {
                     log(`failed to save submission to ${filePath}, file already exists`);
@@ -76,11 +76,12 @@ class SubmissionSaver {
         const postFormCsv = SubmissionSaver.csvFromForm('postform responses', submissionObj.postFormResponses);
 
         const eventRows = [
-            ['events'],
-            ['type', 'ms', 'data']
+            ['round results'],
+            ['correct side', 'advice correct', 'side chosen', 'correct side chosen', 'decision milliseconds']
         ];
-        submissionObj.events.forEach(event => {
-            eventRows.push([event.type, event.ms, event.data]);
+        submissionObj.roundResults.forEach(roundResult => {
+            eventRows.push([roundResult.round.correctSide, roundResult.round.adviceCorrect, roundResult.sideChosen,
+                roundResult.sideChosen === roundResult.round.correctSide, roundResult.decisionMs]);
         });
         const eventCsv = SubmissionSaver.convertToCsv(eventRows);
 

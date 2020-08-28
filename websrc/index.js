@@ -10,14 +10,15 @@ $(document).ready(async function() {
 
     let config;
 
-    let events;
-
-    const STATUS = {
+    const TEXT = {
         WAIT_FOR_ADVICE: 'Wait for advice...',
         CHOOSE: 'Choose',
         WAIT_FOR_CORRECT: 'Wait for correct answer...',
         CORRECT: 'Correct',
-        INCORRECT: 'Incorrect'
+        INCORRECT: 'Incorrect',
+        PROGRESS_WILL_BE_LOST: 'Progress will be lost!',
+        THANK_YOU: 'Thank you!',
+        SUBMISSION_ID: 'Submission ID: %s'
     };
 
     const SIDE = {
@@ -52,6 +53,8 @@ $(document).ready(async function() {
     const formArea = $('#formArea');
 
     const game = $('#game');
+
+    const thankYou = $('#thankYou');
 
     function delay({min, max}) {
         const ms = (Math.random() * (max - min)) + min;
@@ -166,43 +169,38 @@ $(document).ready(async function() {
     async function runRound(round) {
         console.log('run round %o', round);
 
-        recordEvent('waitForAdvice', {
-            round
-        });
-        setStatusText(STATUS.WAIT_FOR_ADVICE)
+        setStatusText(TEXT.WAIT_FOR_ADVICE)
         await delay(config.delays.waitForAdvice);
 
-        recordEvent('showAdvice');
-        setStatusText(STATUS.CHOOSE);
+        setStatusText(TEXT.CHOOSE);
         showAdviceForSide(round.adviceCorrect ? round.correctSide : otherSide(round.correctSide));
         setButtonsDisabled(false);
+        const adviceShownTime = performance.now();
 
-        const chosenSide = await waitForSideChosen();
-        recordEvent('chooseSide', chosenSide);
+        const sideChosen = await waitForSideChosen();
+        const sideChosenTime = performance.now();
+        const decisionMs = sideChosenTime - adviceShownTime;
         const selectedButtonEl = document.activeElement;
         if (selectedButtonEl) {
             selectedButtonEl.blur();
         }
         setButtonsDisabled(true);
-        setStatusText(STATUS.WAIT_FOR_CORRECT);
+        setStatusText(TEXT.WAIT_FOR_CORRECT);
         await delay(config.delays.waitForCorrect);
 
-        recordEvent('showCorrect');
-        const correct = chosenSide === round.correctSide;
-        setStatusText(correct ? STATUS.CORRECT : STATUS.INCORRECT);
+        const correct = sideChosen === round.correctSide;
+        setStatusText(correct ? TEXT.CORRECT : TEXT.INCORRECT);
         showCorrectSide(round.correctSide);
 
         await delay(config.delays.startNextRound);
         resetOutlines();
         clearIcons();
 
-        return correct;
+        return {round, sideChosen, decisionMs};
     }
 
     async function runGame() {
-        game.show();
-
-        events = [];
+        const roundResults = [];
 
         //temp
         config.rounds = config.rounds.slice(0, 5);
@@ -216,39 +214,29 @@ $(document).ready(async function() {
         const numRounds = config.rounds.length;
         let points = 0;
 
-        recordEvent('start', {
-            msSince1970: Date.now()
-        });
+        game.show();
 
         for (let i = 0; i < numRounds; i++) {
             const round = config.rounds[i];
-            const correct = await runRound(round);
-            if (correct) {
+            const roundResult = await runRound(round);
+            if (roundResult.correct) {
                 points++;
             }
+            roundResults.push(roundResult);
             setProgress(points / numRounds * 100);
         }
 
         game.hide();
+
+        return roundResults;
     }
 
-    function recordEvent(type, data) {
-        const now = performance.now();
-        const event = {
-            type,
-            ms: now
-        };
-        if (data) {
-            event.data = data;
-        }
-        events.push(event);
-    }
-
-    async function sendData(submission) {
-        await $.ajax('/api/submitData', {
+    function sendData(submission) {
+        return $.ajax('/api/submitData', {
             method: 'POST',
             contentType: 'application/json',
-            data: JSON.stringify(submission)
+            data: JSON.stringify(submission),
+            dataType: 'json'
         });
     }
 
@@ -333,8 +321,14 @@ $(document).ready(async function() {
 
     function warnOnLeave() {
         $(window).on('beforeunload', () => {
-            return 'Progress will be lost!';
+            return '!'; //not shown to user
         });
+    }
+
+    function showThankYou(fileName) {
+        thankYou.append($('<h3>').text(TEXT.THANK_YOU));
+        thankYou.append($('<p>').text(TEXT.SUBMISSION_ID.replace('%s', fileName)));
+        thankYou.show();
     }
 
     async function main() {
@@ -342,9 +336,10 @@ $(document).ready(async function() {
         await loadConfig();
         warnOnLeave();
         const preFormResponses = await runForm(config.preForm);
-        await runGame();
+        const roundResults = await runGame();
         const postFormResponses = await runForm(config.postForm);
-        await sendData({preFormResponses, postFormResponses, events});
+        const {fileName} = await sendData({preFormResponses, postFormResponses, roundResults});
+        showThankYou(fileName);
 
     }
 
