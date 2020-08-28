@@ -14,3 +14,4 @@ Social Valuation Task in Web Browser
     
 ## programming ideas
 - prevent csrf
+- .dockerignore node_modules
