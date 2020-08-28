@@ -1,15 +1,16 @@
 import $ from 'jquery/dist/jquery'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './index.css'
-import { icon } from '@fortawesome/fontawesome-svg-core'
-import { faUser } from '@fortawesome/free-solid-svg-icons'
+import {icon} from '@fortawesome/fontawesome-svg-core'
+import {faUser} from '@fortawesome/free-solid-svg-icons'
 
 console.log('svtweb index.js loaded');
 
 $(document).ready(async function() {
 
     let config;
-    let eventLog;
+
+    let events;
 
     const STATUS = {
         WAIT_FOR_ADVICE: 'Wait for advice...',
@@ -47,6 +48,10 @@ $(document).ready(async function() {
 
     const pointsBar = $('#pointsBar');
     const currentPoints = $('#currentPoints');
+
+    const formArea = $('#formArea');
+
+    const game = $('#game');
 
     function delay({min, max}) {
         const ms = (Math.random() * (max - min)) + min;
@@ -173,9 +178,7 @@ $(document).ready(async function() {
         setButtonsDisabled(false);
 
         const chosenSide = await waitForSideChosen();
-        recordEvent('chooseSide', {
-            side: chosenSide
-        });
+        recordEvent('chooseSide', chosenSide);
         const selectedButtonEl = document.activeElement;
         if (selectedButtonEl) {
             selectedButtonEl.blur();
@@ -196,34 +199,19 @@ $(document).ready(async function() {
         return correct;
     }
 
-    function recordEvent(type, data) {
-        const now = performance.now();
-        const event = {
-            type,
-            ms: now
-        };
-        if (data) {
-            event.data = data;
-        }
-        eventLog.push(event);
-    }
+    async function runGame() {
+        game.show();
 
-    async function main() {
-        config = await $.ajax('/api/config', {
-            dataType: 'json'
-        });
+        events = [];
 
-        eventLog = [];
+        //temp
+        config.rounds = config.rounds.slice(0, 5);
 
         for (let threshold of config.thresholds) {
             if (threshold.percent > 0) {
                 addProgressBarThreshold(threshold);
             }
         }
-
-        $(window).on('beforeunload', () => {
-            return 'Progress will be lost!';
-        });
 
         const numRounds = config.rounds.length;
         let points = 0;
@@ -240,12 +228,130 @@ $(document).ready(async function() {
             }
             setProgress(points / numRounds * 100);
         }
+
+        game.hide();
+    }
+
+    function recordEvent(type, data) {
+        const now = performance.now();
+        const event = {
+            type,
+            ms: now
+        };
+        if (data) {
+            event.data = data;
+        }
+        events.push(event);
+    }
+
+    async function sendData(submission) {
+        await $.ajax('/api/submitData', {
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(submission)
+        });
+    }
+
+    async function loadConfig() {
+        config = await $.ajax('/api/config', {
+            dataType: 'json'
+        });
+    }
+
+    let domIdCounter = 0;
+    function uniqueDomId() {
+        return 'id-' + domIdCounter++;
+    }
+
+    function getFormQuestionObj(info) {
+        switch (info.type) {
+            case 'heading':
+                return $('<h3>').text(info.text);
+            case 'paragraph':
+                return $('<p>').text(info.text);
+            case 'radioButtons':
+                const radioFormGroup = $('<div class="form-group">');
+                radioFormGroup.append($('<label>').text(info.text));
+                for (let option of info.options) {
+                    const div = $('<div class="form-check">');
+
+                    const radioInput = $('<input type="radio" required>');
+                    const inputId = uniqueDomId();
+                    radioInput.attr('id', inputId);
+                    radioInput.attr('name', info.text);
+                    div.append(radioInput);
+
+                    div.append(' ');
+
+                    const label = $('<label>');
+                    label.attr('for', inputId);
+                    div.append(label);
+
+                    if (typeof option === 'string') {
+                        label.text(option);
+                        radioInput.val(option);
+                    } else {
+                        label.text(option.display);
+                        radioInput.val(option.value);
+                    }
+
+                    radioFormGroup.append(div);
+                }
+                return radioFormGroup;
+            case 'textField':
+                const textFieldFormGroup = $('<div class="form-group">');
+                const textFieldId = uniqueDomId();
+                textFieldFormGroup.append($('<label>').attr('for', textFieldId).text(info.text));
+                textFieldFormGroup.append($('<input type="text" class="form-control" required>').attr('id', textFieldId));
+                return textFieldFormGroup;
+        }
+    }
+
+    async function runForm(formInfo) {
+        const formResponses = [];
+        formArea.show();
+        for (let questionGroup of formInfo) {
+            const questionGroupForm = $('<form>');
+            for (let question of questionGroup) {
+                const formQuestionObj = getFormQuestionObj(question);
+                questionGroupForm.append(formQuestionObj);
+            }
+            questionGroupForm.append($('<div class="form-group">').append($('<button type="submit" class="btn btn-secondary">Next</button>')))
+            formArea.append(questionGroupForm);
+            await new Promise(res => {
+                questionGroupForm.submit(function (e) {
+                    e.preventDefault();
+                    res();
+                });
+            });
+            questionGroupForm.remove();
+            formResponses.push(...questionGroupForm.serializeArray());
+        }
+        formArea.hide();
+        return formResponses;
+    }
+
+    function warnOnLeave() {
+        $(window).on('beforeunload', () => {
+            return 'Progress will be lost!';
+        });
+    }
+
+    async function main() {
+
+        await loadConfig();
+        warnOnLeave();
+        const preFormResponses = await runForm(config.preForm);
+        await runGame();
+        const postFormResponses = await runForm(config.postForm);
+        await sendData({preFormResponses, postFormResponses, events});
+
     }
 
     try {
         await main();
     } catch (e) {
-        alert('Critical Error: ' + e.toString() + '\nDetails logged to console');
         console.error('critical error %o', e);
+        alert('Critical Error: ' + e.toString() + '\nDetails logged to console');
     }
 });

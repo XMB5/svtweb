@@ -12,32 +12,31 @@
 </nav>
 
 <div class="container mt-2">
-    <h3>Instructions</h3>
-    <p>Here we blab blab blab all day long. Lorem ipsum dolor sit amet, stet dictas pro ne, exerci definiebas elaboraret eos in, congue melius aeterno pri at. No eos laboramus voluptatum. Dolor repudiare sadipscing vix an. Quot copiosae dissentias ut quo, an meliore recusabo adipiscing mea. Ne mei rebum quando consequat, te his sanctus accusata.</p>
-    <hr>
-    <div class="row align-items-center">
-        <div class="col-5 text-left">
-            <div id="leftButtonOutline" class="button-outline">
-                <button id="leftButton" type="button" class="btn btn-warning giant-button" disabled>A</button>
+    <div id="formArea"></div>
+    <div id="game" style="display: none">
+        <div class="row align-items-center">
+            <div class="col-5 text-left">
+                <div id="leftButtonOutline" class="button-outline">
+                    <button id="leftButton" type="button" class="btn btn-warning giant-button" disabled>A</button>
+                </div>
+                <span id="leftIcons"></span>
             </div>
-            <span id="leftIcons"></span>
-        </div>
-        <div class="col-2 text-center">
-            <span id="statusText">
-                not started yet
-            </span>
-        </div>
-        <div class="col-5 text-right">
-            <span id="rightIcons"></span>
-            <div id="rightButtonOutline" class="button-outline">
-                <button id="rightButton" type="button" class="btn btn-primary giant-button" disabled>B</button>
+            <div class="col-2 text-center">
+                <span id="statusText">
+                    not started yet
+                </span>
             </div>
+            <div class="col-5 text-right">
+                <span id="rightIcons"></span>
+                <div id="rightButtonOutline" class="button-outline">
+                    <button id="rightButton" type="button" class="btn btn-primary giant-button" disabled>B</button>
+                </div>
+            </div>
+        </div>
+        <div id="pointsBar" class="progress mt-3 position-relative">
+            <div id="currentPoints" class="progress-bar above-threshold" style="width: 0"></div>
         </div>
     </div>
-    <div id="pointsBar" class="progress mt-3 position-relative">
-        <div id="currentPoints" class="progress-bar above-threshold" style="width: 0"></div>
-    </div>
-    <hr>
 </div>
 
 </html>

@@ -20,5 +20,10 @@ module.exports = {
             title: 'svtweb',
             template: './websrc/index.ejs'
         })
-    ]
+    ],
+    devServer: {
+        proxy: {
+            '/api': 'http://localhost:9090'
+        }
+    }
 };

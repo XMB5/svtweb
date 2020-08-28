@@ -6,7 +6,8 @@
     "build": "rimraf ./dist && webpack --config webpack.config.js --mode production"
   },
   "dependencies": {
-    "@hapi/hapi": "^20.0.0"
+    "@hapi/hapi": "^20.0.0",
+    "@hapi/inert": "^6.0.2"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.30",
