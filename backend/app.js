@@ -1,10 +1,10 @@
 'use strict';
 
 const Hapi = require('@hapi/hapi');
-const Inert = require('@hapi/inert');
 
 const SVTConfigLoader = require('./SVTConfigLoader.js');
 const SubmissionSaver = require('./SubmissionSaver.js');
+const log = require('./log.js')('app');
 
 const init = async () => {
 
@@ -15,6 +15,10 @@ const init = async () => {
     const submissionsDir = process.env.API_SUBMISSIONS_DIR;
     if (!submissionsDir) {
         throw new Error('pass submissions directory in environment variable API_SUBMISSIONS_DIR');
+    }
+    const staticDir = process.env.API_STATIC_DIR;
+    if (!staticDir) {
+        log('environment variable API_STATIC_DIR is empty - will not serve any static files');
     }
     const port = parseInt(process.env.API_PORT) || 9090;
     const host = process.env.API_HOST || 'localhost';
@@ -30,12 +34,10 @@ const init = async () => {
         host
     });
 
-    await server.register(Inert);
-
     server.route({
         method: 'GET',
         path: '/api/config',
-        handler: (request, h) => {
+        handler: () => {
             return config;
         }
     });
@@ -43,7 +45,7 @@ const init = async () => {
     server.route({
         method: 'POST',
         path: '/api/submitData',
-        handler: async (request, h) => {
+        handler: async request => {
             const submissionObj = request.payload;
             const fileName = await submissionSaver.saveSubmission(submissionObj);
             return {fileName};
@@ -54,6 +56,19 @@ const init = async () => {
             }
         }
     });
+
+    if (staticDir) {
+        await server.register(require('@hapi/inert'));
+        server.route({
+            method: 'GET',
+            path: '/{file*}',
+            handler: {
+                directory: {
+                    path: staticDir
+                }
+            }
+        });
+    }
 
     await server.start();
     console.log('Server running on %s', server.info.uri);
