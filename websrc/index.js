@@ -218,7 +218,7 @@ $(document).ready(async function() {
         for (let i = 0; i < numRounds; i++) {
             const round = config.rounds[i];
             const roundResult = await runRound(round);
-            if (roundResult.correct) {
+            if (roundResult.sideChosen === roundResult.round.correctSide) {
                 points++;
             }
             roundResults.push(roundResult);
