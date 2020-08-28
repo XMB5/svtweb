@@ -299,7 +299,7 @@ $(document).ready(async function() {
         const formResponses = [];
         formArea.show();
         for (let questionGroup of formInfo) {
-            const questionGroupForm = $('<form>');
+            const questionGroupForm = $('<form autocomplete="off">');
             for (let question of questionGroup) {
                 const formQuestionObj = getFormQuestionObj(question);
                 questionGroupForm.append(formQuestionObj);
