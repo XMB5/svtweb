@@ -202,7 +202,6 @@ $(document).ready(async function() {
     async function runGame() {
         const roundResults = [];
 
-        //temp
         config.rounds = config.rounds.slice(0, 5);
 
         for (let threshold of config.thresholds) {

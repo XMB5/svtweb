@@ -32,8 +32,8 @@
     [
       {
         "type": "radioButtons",
-        "text": "do you like cheese?",
-        "options": [{"display": "0 - Not at all", "value": 0}, "totally"]
+        "text": "Do you like cheese?",
+        "options": [{"display": "0 - Not at all", "value": 0}, {"display": "1 - Somewhat", "value": 1}, {"display": "2 - Mostly", "value": 2}, {"display": "3 - Totally", "value": 3}]
       }
     ]
   ],
@@ -46,6 +46,21 @@
       {
         "type": "paragraph",
         "text": "“Here!” cried Alice, quite forgetting in the flurry of the moment how large she had grown in the last few minutes, and she jumped up in such a hurry that she tipped over the jury-box with the edge of her skirt, upsetting all the jurymen on to the heads of the crowd below, and there they lay sprawling about, reminding her very much of a globe of goldfish she had accidentally upset the week before."
+      }
+    ],
+    [
+      {
+        "type": "heading",
+        "text": "Emotions"
+      },
+      {
+        "type": "radioButtons",
+        "text": "Query your inner psychological status",
+        "options": [{"display": "0 - red", "value": 0}, {"display": "1 - green", "value": 1}, {"display": "2 - blue", "value": 2}]
+      },
+      {
+        "type": "textField",
+        "text": "How do you feel about your partner?"
       }
     ]
   ],
@@ -73,16 +88,16 @@
   ],
   "delays": {
     "waitForAdvice": {
-      "min": 100,
-      "max": 200
+      "min": 1000,
+      "max": 2000
     },
     "waitForCorrect": {
-      "min": 100,
-      "max": 200
+      "min": 1000,
+      "max": 2000
     },
     "startNextRound": {
-      "min": 200,
-      "max": 400
+      "min": 2000,
+      "max": 4000
     }
   },
   "rounds": [
