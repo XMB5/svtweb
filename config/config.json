@@ -20,13 +20,29 @@
     ],
     [
       {
+        "type": "heading",
+        "text": "Vacuum tubes"
+      },
+      {
+        "type": "audio",
+        "text": "Listen to this cool audio!",
+        "source": "testaudio.mp3"
+      },
+      {
+        "type": "image",
+        "text": "Look at these vacuum tubes!",
+        "source": "testimg.jpg"
+      }
+    ],
+    [
+      {
         "type": "textField",
         "text": "mturk id"
       },
       {
         "type": "radioButtons",
         "text": "gender",
-        "options": ["Male", "Female"]
+        "options": ["Male", "Female", "Other"]
       }
     ],
     [
@@ -102,1163 +118,1453 @@
   },
   "rounds": [
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": true
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": true
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": true
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": true
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": true
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": true
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": true
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": true
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": true
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": true
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": true
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": true
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": true
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": true
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": true
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": true
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": true
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": true
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": true
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": true
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": true
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": true
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": true,
+      "correctColor": 0,
       "adviceCorrect": true
     },
     {
-      "correctSide": 0,
+      "yellowOnLeft": false,
+      "correctColor": 0,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": false,
+      "correctColor": 1,
       "adviceCorrect": false
     },
     {
-      "correctSide": 1,
+      "yellowOnLeft": true,
+      "correctColor": 1,
       "adviceCorrect": false
     }
   ]

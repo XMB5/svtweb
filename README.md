@@ -24,11 +24,12 @@ Social Valuation Task in Web Browser
         - stand up wiggle
 - cheering gif
 - sounds
+- continue button at end of game instead of instantly moving on
+- a/b does not correspond with color: remove text? swap text with color?
 
 ## todo
 - show correct in middle
     - user icon if advisor
-- bigger buttons on big screen
 - randomize side of colors
 - breaks every x rounds
 - sound form

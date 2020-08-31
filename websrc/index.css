@@ -3,27 +3,19 @@
 }
 
 .giant-button {
-    font-size: 1.5rem;
-    padding: 3rem 5rem;
+    font-size: 2.5rem;
+    padding: 5rem;
+    width: 100%;
 }
 
-.button-outline {
-    display: inline-flex; /* prevents extra space when adding border */
-}
-
-.green-outline {
-    margin: -0.5rem;
-    border: 0.5rem solid lime;
-}
-
-.red-outline {
-    margin: -0.5rem;
-    border: 0.5rem solid red;
+.progress-bar-wide {
+    height: 2rem;
+    font-size: 1.3rem;
 }
 
 .progress-bar-threshold {
-    height: 1rem;
-    padding: 0 0.2rem;
+    height: 2rem;
+    padding: 0 0.3rem;
     text-align: center;
     z-index: 100;
     position: absolute;

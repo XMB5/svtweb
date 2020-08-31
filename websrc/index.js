@@ -1,14 +1,19 @@
 import $ from 'jquery/dist/jquery'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './index.css'
-import {icon} from '@fortawesome/fontawesome-svg-core'
-import {faUser} from '@fortawesome/free-solid-svg-icons'
+import {library, dom} from '@fortawesome/fontawesome-svg-core'
+import {faUser, faCircleNotch, faQuestionCircle, faSquare} from '@fortawesome/free-solid-svg-icons'
 
 console.log('svtweb index.js loaded');
+
+library.add(faUser, faCircleNotch, faQuestionCircle, faSquare);
+dom.i2svg();
 
 $(document).ready(async function() {
 
     let config;
+    let configBaseDir;
+    let points;
 
     const TEXT = {
         WAIT_FOR_ADVICE: 'Wait for advice...',
@@ -21,31 +26,32 @@ $(document).ready(async function() {
         SUBMISSION_ID: 'Submission ID: %s'
     };
 
+    const BTN_COLORS = {
+        YELLOW: 'btn-warning',
+        BLUE: 'btn-primary'
+    };
+
     const SIDE = {
         LEFT: 0,
         RIGHT: 1
     };
 
-    const ICON = {
-        ADVISOR: faUser
+    const COLOR = {
+        YELLOW: 0,
+        BLUE: 1
     };
-
-    const OUTLINE_CLASS = {
-        CORRECT: 'green-outline',
-        INCORRECT: 'red-outline'
-    };
-    const ALL_OUTLINE_CLASSES = Object.values(OUTLINE_CLASS).join(' ');
 
     const leftButton = $('#leftButton');
     const rightButton = $('#rightButton');
 
-    const leftButtonOutline = $('#leftButtonOutline');
-    const rightButtonOutline = $('#rightButtonOutline');
+    const gameLoading = $('#gameLoading');
+    const makeDecision = $('#makeDecision');
 
-    const statusText = $('#statusText');
+    const yellowCorrect = $('#yellowCorrect');
+    const blueCorrect = $('#blueCorrect');
 
-    const leftIcons = $('#leftIcons');
-    const rightIcons = $('#rightIcons');
+    const leftAdvice = $('#leftAdvice');
+    const rightAdvice = $('#rightAdvice');
 
     const pointsBar = $('#pointsBar');
     const currentPoints = $('#currentPoints');
@@ -56,50 +62,25 @@ $(document).ready(async function() {
 
     const thankYou = $('#thankYou');
 
-    function delay({min, max}) {
-        const ms = (Math.random() * (max - min)) + min;
+    function delay(ms) {
         return new Promise(res => setTimeout(res, ms));
     }
 
-    function setStatusText(text) {
-        statusText.text(text);
+    function delayRange({min, max}) {
+        const ms = (Math.random() * (max - min)) + min;
+        return delay(ms);
     }
 
-    function genIcon(faIcon) {
-        const node = icon(faIcon, {
-            transform: {
-                size: 48 //starts at 16
-            }
-        }).node[0];
-        return $(node).addClass('mx-4');
+    function clearAdvice() {
+        leftAdvice.hide();
+        rightAdvice.hide();
     }
 
-    /**
-     * @param faIcon Font Awesome icon
-     * @see https://fontawesome.com/cheatsheet
-     */
-    function addIconLeft(faIcon) {
-        leftIcons.append(genIcon(faIcon));
-    }
-
-    function addIconRight(faIcon) {
-        rightIcons.prepend(genIcon(faIcon));
-    }
-
-    function clearIcons() {
-        leftIcons.empty();
-        rightIcons.empty();
-    }
-
-    /**
-     * Shows advice icon on one side
-     * @param side 0==left, 1==right
-     */
     function showAdviceForSide(side) {
         if (side === SIDE.LEFT) {
-            addIconLeft(ICON.ADVISOR);
+            leftAdvice.show();
         } else {
-            addIconRight(ICON.ADVISOR);
+            rightAdvice.show();
         }
     }
 
@@ -121,16 +102,44 @@ $(document).ready(async function() {
         });
     }
 
-    function showCorrectSide(side) {
-        let correctOutline = side === SIDE.RIGHT ? rightButtonOutline : leftButtonOutline;
-        let incorrectOutline = side === SIDE.RIGHT ? leftButtonOutline : rightButtonOutline;
-        correctOutline.addClass(OUTLINE_CLASS.CORRECT);
-        incorrectOutline.addClass(OUTLINE_CLASS.INCORRECT);
+    function setButtonColors(yellowOnLeft) {
+        const yellowBtn = yellowOnLeft ? leftButton : rightButton;
+        const blueBtn = yellowOnLeft ? rightButton : leftButton;
+
+        yellowBtn.addClass(BTN_COLORS.YELLOW);
+        yellowBtn.removeClass(BTN_COLORS.BLUE);
+
+        blueBtn.addClass(BTN_COLORS.BLUE);
+        blueBtn.removeClass(BTN_COLORS.YELLOW);
     }
 
-    function resetOutlines() {
-        leftButtonOutline.removeClass(ALL_OUTLINE_CLASSES);
-        rightButtonOutline.removeClass(ALL_OUTLINE_CLASSES);
+    function getSideForColor(color, yellowOnLeft) {
+        if (color === COLOR.YELLOW) {
+            return yellowOnLeft ? SIDE.LEFT : SIDE.RIGHT;
+        } else {
+            return yellowOnLeft ? SIDE.RIGHT : SIDE.LEFT;
+        }
+    }
+
+    function getColorForSide(side, yellowOnLeft) {
+        if (side === SIDE.LEFT) {
+            return yellowOnLeft ? COLOR.YELLOW : COLOR.BLUE;
+        } else {
+            return yellowOnLeft ? COLOR.BLUE : COLOR.YELLOW;
+        }
+    }
+
+    function showCorrectColor(color) {
+        if (color === COLOR.YELLOW) {
+            yellowCorrect.show();
+        } else {
+            blueCorrect.show();
+        }
+    }
+
+    function hideCorrectColor() {
+        yellowCorrect.hide();
+        blueCorrect.hide();
     }
 
     function setProgress(percent) {
@@ -169,39 +178,53 @@ $(document).ready(async function() {
     async function runRound(round) {
         console.log('run round %o', round);
 
-        setStatusText(TEXT.WAIT_FOR_ADVICE)
-        await delay(config.delays.waitForAdvice);
+        setButtonColors(round.yellowOnLeft);
 
-        setStatusText(TEXT.CHOOSE);
-        showAdviceForSide(round.adviceCorrect ? round.correctSide : otherSide(round.correctSide));
+        gameLoading.show();
+        await delayRange(config.delays.waitForAdvice);
+        gameLoading.hide();
+
+        const correctSide = getSideForColor(round.correctColor, round.yellowOnLeft);
+        const adviceSide = round.adviceCorrect ? correctSide : otherSide(correctSide);
+        showAdviceForSide(adviceSide);
         setButtonsDisabled(false);
+        makeDecision.show();
         const adviceShownTime = performance.now();
 
         const sideChosen = await waitForSideChosen();
         const sideChosenTime = performance.now();
         const decisionMs = sideChosenTime - adviceShownTime;
+        const colorChosen = getColorForSide(sideChosen, round.yellowOnLeft);
+        makeDecision.hide();
+
         const selectedButtonEl = document.activeElement;
         if (selectedButtonEl) {
             selectedButtonEl.blur();
         }
         setButtonsDisabled(true);
-        setStatusText(TEXT.WAIT_FOR_CORRECT);
-        await delay(config.delays.waitForCorrect);
+        gameLoading.show();
+        await delayRange(config.delays.waitForCorrect);
+        gameLoading.hide();
 
-        const correct = sideChosen === round.correctSide;
-        setStatusText(correct ? TEXT.CORRECT : TEXT.INCORRECT);
-        showCorrectSide(round.correctSide);
+        showCorrectColor(round.correctColor);
+        const correct = colorChosen === round.correctColor;
+        if (correct) {
+            points++;
+            setProgress(points / config.rounds.length * 100);
+        }
 
-        await delay(config.delays.startNextRound);
-        resetOutlines();
-        clearIcons();
+        await delayRange(config.delays.startNextRound);
+        hideCorrectColor();
+        clearAdvice();
 
-        return {round, sideChosen, decisionMs};
+        return {round, colorChosen, correct, decisionMs};
     }
 
     async function runGame() {
+        points = 0;
         const roundResults = [];
 
+        //temp
         config.rounds = config.rounds.slice(0, 5);
 
         for (let threshold of config.thresholds) {
@@ -210,19 +233,12 @@ $(document).ready(async function() {
             }
         }
 
-        const numRounds = config.rounds.length;
-        let points = 0;
-
         game.show();
 
-        for (let i = 0; i < numRounds; i++) {
+        for (let i = 0; i < config.rounds.length; i++) {
             const round = config.rounds[i];
             const roundResult = await runRound(round);
-            if (roundResult.sideChosen === roundResult.round.correctSide) {
-                points++;
-            }
             roundResults.push(roundResult);
-            setProgress(points / numRounds * 100);
         }
 
         game.hide();
@@ -239,8 +255,12 @@ $(document).ready(async function() {
         });
     }
 
-    async function loadConfig() {
-        config = await $.ajax('/api/config', {
+    async function loadConfig(configBaseDirP) {
+        configBaseDir = configBaseDirP;
+        if (!configBaseDir.endsWith('/')) {
+            configBaseDir += '/';
+        }
+        config = await $.ajax(configBaseDir + 'config.json', {
             dataType: 'json'
         });
     }
@@ -291,6 +311,19 @@ $(document).ready(async function() {
                 textFieldFormGroup.append($('<label>').attr('for', textFieldId).text(info.text));
                 textFieldFormGroup.append($('<input type="text" class="form-control" required>').attr('id', textFieldId));
                 return textFieldFormGroup;
+            case 'audio':
+                const audioText = $('<div>').text(info.text);
+                // controlsList="nodownload" hides download button on chrome
+                // noinspection HtmlUnknownAttribute
+                const audio = $('<audio controls controlsList="nodownload">').attr('src', configBaseDir + info.source);
+                return $('<div class="form-group">').append(audioText, audio);
+            case 'image':
+                const imgText = $('<div>').text(info.text);
+                // noinspection HtmlRequiredAltAttribute,RequiredAttributes
+                const img = $('<img class="img-fluid">').attr('src', configBaseDir + info.source);
+                return $('<div class="form-group">').append(imgText, img);
+            default:
+                throw new Error('unknwon form field type ' + info.type);
         }
     }
 
@@ -332,9 +365,9 @@ $(document).ready(async function() {
 
     async function main() {
 
-        await loadConfig();
+        await loadConfig('/api/config');
         warnOnLeave();
-        const preFormResponses = await runForm(config.preForm);
+        //const preFormResponses = await runForm(config.preForm);
         const roundResults = await runGame();
         const postFormResponses = await runForm(config.postForm);
         const {fileName} = await sendData({preFormResponses, postFormResponses, roundResults});

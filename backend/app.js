@@ -1,8 +1,8 @@
 'use strict';
 
 const Hapi = require('@hapi/hapi');
+const Inert = require('@hapi/inert');
 
-const SVTConfigLoader = require('./SVTConfigLoader.js');
 const SubmissionSaver = require('./SubmissionSaver.js');
 const log = require('./log.js')('app');
 
@@ -23,9 +23,6 @@ const init = async () => {
     const port = parseInt(process.env.API_PORT) || 9090;
     const host = process.env.API_HOST || 'localhost';
 
-    const svtConfigLoader = new SVTConfigLoader(configDir);
-    const config = svtConfigLoader.loadConfig();
-
     const submissionSaver = new SubmissionSaver(submissionsDir);
     await submissionSaver.checkAccess();
 
@@ -34,11 +31,16 @@ const init = async () => {
         host
     });
 
+    await server.register(Inert);
+
     server.route({
         method: 'GET',
-        path: '/api/config',
-        handler: () => {
-            return config;
+        path: '/api/config/{file*}',
+        handler: {
+            directory: {
+                path: configDir,
+                index: false
+            }
         }
     });
 
@@ -58,7 +60,6 @@ const init = async () => {
     });
 
     if (staticDir) {
-        await server.register(require('@hapi/inert'));
         server.route({
             method: 'GET',
             path: '/{file*}',

@@ -77,11 +77,11 @@ class SubmissionSaver {
 
         const eventRows = [
             ['round results'],
-            ['correct side', 'advice correct', 'side chosen', 'correct side chosen', 'decision milliseconds']
+            ['correct color', 'advice correct', 'yellow on left', 'color chosen', 'correct color chosen', 'decision milliseconds']
         ];
         submissionObj.roundResults.forEach(roundResult => {
-            eventRows.push([roundResult.round.correctSide, roundResult.round.adviceCorrect, roundResult.sideChosen,
-                roundResult.sideChosen === roundResult.round.correctSide, roundResult.decisionMs]);
+            eventRows.push([roundResult.round.correctColor, roundResult.round.adviceCorrect, roundResult.round.yellowOnLeft,
+                roundResult.colorChosen, roundResult.correct , roundResult.decisionMs]);
         });
         const eventCsv = SubmissionSaver.convertToCsv(eventRows);
 
