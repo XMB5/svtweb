@@ -367,7 +367,7 @@ $(document).ready(async function() {
 
         await loadConfig('/api/config');
         warnOnLeave();
-        //const preFormResponses = await runForm(config.preForm);
+        const preFormResponses = await runForm(config.preForm);
         const roundResults = await runGame();
         const postFormResponses = await runForm(config.postForm);
         const {fileName} = await sendData({preFormResponses, postFormResponses, roundResults});
