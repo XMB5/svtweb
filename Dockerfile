@@ -3,14 +3,8 @@ FROM node:14
 RUN mkdir /app
 WORKDIR /app
 
-COPY package*.json ./
-RUN npm install --only=prod
-
-RUN mkdir backend
-COPY backend/ backend/
-
-RUN mkdir dist/
-COPY dist/ dist/
+COPY . ./
+RUN npm install && npm run build && npm prune --production
 
 ENV API_HOST '0.0.0.0'
 ENV API_CONFIG_DIR '/config'

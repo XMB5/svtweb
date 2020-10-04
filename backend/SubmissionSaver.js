@@ -17,7 +17,8 @@ class SubmissionSaver {
     }
 
     async saveSubmission(submissionObj) {
-        const fileData = SubmissionSaver.objToCSV(submissionObj);
+        //const fileData = SubmissionSaver.objToCSV(submissionObj);
+        const fileData = JSON.stringify(submissionObj);
         const dateString = new Date().toISOString();
         for (let i = 0; i < 100; i++) {
             const fileName = 'submission-' + dateString + '-' + i + '.csv';

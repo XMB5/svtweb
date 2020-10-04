@@ -8,6 +8,10 @@
     width: 100%;
 }
 
+.icon-hidden {
+    visibility: hidden;
+}
+
 .progress-bar-wide {
     height: 2rem;
     font-size: 1.3rem;

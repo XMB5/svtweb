@@ -1,8 +1,9 @@
-import $ from 'jquery/dist/jquery'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import './index.css'
-import {library, dom} from '@fortawesome/fontawesome-svg-core'
-import {faUser, faCircleNotch, faQuestionCircle, faSquare} from '@fortawesome/free-solid-svg-icons'
+import $ from 'jquery/dist/jquery';
+import 'bootstrap/dist/js/bootstrap.bundle';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './index.css';
+import {library, dom} from '@fortawesome/fontawesome-svg-core';
+import {faUser, faCircleNotch, faQuestionCircle, faSquare} from '@fortawesome/free-solid-svg-icons';
 
 console.log('svtweb index.js loaded');
 
@@ -13,7 +14,6 @@ $(document).ready(async function() {
 
     let config;
     let configBaseDir;
-    let points;
 
     const TEXT = {
         WAIT_FOR_ADVICE: 'Wait for advice...',
@@ -30,6 +30,8 @@ $(document).ready(async function() {
         YELLOW: 'btn-warning',
         BLUE: 'btn-primary'
     };
+
+    const ICON_HIDDEN_CLASS = 'icon-hidden';
 
     const SIDE = {
         LEFT: 0,
@@ -56,14 +58,19 @@ $(document).ready(async function() {
     const pointsBar = $('#pointsBar');
     const currentPoints = $('#currentPoints');
 
-    const formArea = $('#formArea');
+    const demoArea = $('#demoArea');
+    const demoText = $('#demoText');
+    const demoNextButton = $('#demoNextButton');
 
     const game = $('#game');
+
+    const advisorBarDivider = $('#advisorBarDivider');
+    const advisorBarArea = $('#advisorBarArea');
 
     const thankYou = $('#thankYou');
 
     function delay(ms) {
-        return new Promise(res => setTimeout(res, ms));
+        return new Promise(res => setTimeout(res, ms / (window.aaa || 1)));
     }
 
     function delayRange({min, max}) {
@@ -71,16 +78,16 @@ $(document).ready(async function() {
         return delay(ms);
     }
 
-    function clearAdvice() {
-        leftAdvice.hide();
-        rightAdvice.hide();
+    function hideAdvice() {
+        leftAdvice.addClass(ICON_HIDDEN_CLASS);
+        rightAdvice.addClass(ICON_HIDDEN_CLASS);
     }
 
     function showAdviceForSide(side) {
         if (side === SIDE.LEFT) {
-            leftAdvice.show();
+            leftAdvice.removeClass(ICON_HIDDEN_CLASS);
         } else {
-            rightAdvice.show();
+            rightAdvice.removeClass(ICON_HIDDEN_CLASS);
         }
     }
 
@@ -89,9 +96,14 @@ $(document).ready(async function() {
         rightButton.prop('disabled', disabled);
     }
 
-    function waitForSideChosen() {
+    function waitForDecision() {
         return new Promise(res => {
+            setButtonsDisabled(false);
+            makeDecision.show();
+
             function handler(event) {
+                makeDecision.hide();
+                setButtonsDisabled(true);
                 leftButton.off('click');
                 rightButton.off('click');
                 const chosenButtonEl = event.delegateTarget;
@@ -142,108 +154,246 @@ $(document).ready(async function() {
         blueCorrect.hide();
     }
 
-    function setProgress(percent) {
-        currentPoints.css('width', percent + '%');
-        let highestThreshold;
-        let highestThresholdPercent = -1;
-        for (let threshold of config.thresholds) {
-            if (percent >= threshold.percent && threshold.percent > highestThresholdPercent) {
-                highestThreshold = threshold;
-                highestThresholdPercent = threshold.percent;
+    function setProgress(el, rewards, fraction) {
+        const percent = fraction * 100;
+        el.css('width', percent + '%');
+        let bestReward;
+        for (let reward of rewards) {
+            if (percent >= reward.startPercent && percent <= reward.endPercent &&
+                (!bestReward || bestReward.endPercent < reward.endPercent)) {
+                bestReward = reward;
             }
         }
-        if (highestThreshold) {
-            currentPoints.text(highestThreshold.text);
-        } else {
-            currentPoints.text('');
-        }
+        el.text(bestReward ? bestReward.text : config.noReward);
     }
 
-    function addProgressBarThreshold(info) {
-        const threshold = $('<div class="progress-bar progress-bar-threshold"></div>');
-        if (info.percent === 100) {
-            threshold.css('right', '0');
-        } else {
-            threshold.css('left', info.percent + '%');
-        }
-        threshold.css('background', info.color);
-        threshold.text(info.text);
-        pointsBar.append(threshold);
+    function generateRangeIndicator(info) {
+        const indicator = $('<div class="progress-bar progress-bar-threshold">');
+        indicator.css('left', info.startPercent + '%');
+        indicator.css('width', (info.endPercent - info.startPercent) + '%');
+        indicator.css('background', info.color);
+        indicator.text(info.text);
+        return indicator;
     }
 
     function otherSide(side) {
         return side === SIDE.RIGHT ? side.LEFT : SIDE.RIGHT;
     }
 
-    async function runRound(round) {
-        console.log('run round %o', round);
-
-        setButtonColors(round.yellowOnLeft);
-
+    async function loadAdviceAnimation() {
         gameLoading.show();
         await delayRange(config.delays.waitForAdvice);
         gameLoading.hide();
+    }
+
+    async function loadCorrectAnimation() {
+        gameLoading.show();
+        await delayRange(config.delays.waitForCorrect);
+        gameLoading.hide();
+    }
+
+    async function showPopover(el, content) {
+        el.data('popover-content', content);
+        el.popover({
+            content: function() {
+                return $(this).data('popover-content');
+            },
+            placement: 'top',
+            trigger: 'manual'
+        });
+        el.popover('show');
+    }
+
+    async function runRound(round) {
+        console.log('run round %o', round);
+
+        const popovers = round.popovers || {};
+
+        setButtonColors(round.yellowOnLeft);
+
+        await loadAdviceAnimation();
 
         const correctSide = getSideForColor(round.correctColor, round.yellowOnLeft);
         const adviceSide = round.adviceCorrect ? correctSide : otherSide(correctSide);
-        showAdviceForSide(adviceSide);
+        if (!round.hideAdvice) {
+            showAdviceForSide(adviceSide);
+        }
         setButtonsDisabled(false);
-        makeDecision.show();
+        if (popovers.leftButton) {
+            showPopover(leftButton, popovers.leftButton);
+        }
+        if (popovers.rightButton) {
+            showPopover(rightButton, popovers.rightButton);
+        }
+        let adviceIcon;
+        if (popovers.advice) {
+            adviceIcon = adviceSide === SIDE.LEFT ? leftAdvice : rightAdvice;
+            showPopover(adviceIcon, popovers.advice);
+        }
         const adviceShownTime = performance.now();
 
-        const sideChosen = await waitForSideChosen();
+        const sideChosen = await waitForDecision();
+        if (popovers.leftButton) {
+            leftButton.popover('hide');
+        }
+        if (popovers.rightButton) {
+            rightButton.popover('hide');
+        }
+        if (popovers.advice) {
+            adviceIcon.popover('hide');
+        }
         const sideChosenTime = performance.now();
         const decisionMs = sideChosenTime - adviceShownTime;
         const colorChosen = getColorForSide(sideChosen, round.yellowOnLeft);
-        makeDecision.hide();
 
         const selectedButtonEl = document.activeElement;
         if (selectedButtonEl) {
             selectedButtonEl.blur();
         }
         setButtonsDisabled(true);
-        gameLoading.show();
-        await delayRange(config.delays.waitForCorrect);
-        gameLoading.hide();
+        await loadCorrectAnimation();
 
         showCorrectColor(round.correctColor);
         const correct = colorChosen === round.correctColor;
-        if (correct) {
-            points++;
-            setProgress(points / config.rounds.length * 100);
-        }
-
-        await delayRange(config.delays.startNextRound);
-        hideCorrectColor();
-        clearAdvice();
 
         return {round, colorChosen, correct, decisionMs};
     }
 
+    async function initGameDisplay() {
+        for (let reward of config.rewards) {
+            const rangeIndicator = generateRangeIndicator(reward);
+            pointsBar.append(rangeIndicator);
+        }
+    }
+
     async function runGame() {
-        points = 0;
+        game.fadeIn();
+
+        let points = 0;
         const roundResults = [];
 
         //temp
         config.rounds = config.rounds.slice(0, 5);
 
-        for (let threshold of config.thresholds) {
-            if (threshold.percent > 0) {
-                addProgressBarThreshold(threshold);
-            }
-        }
-
-        game.show();
-
         for (let i = 0; i < config.rounds.length; i++) {
             const round = config.rounds[i];
-            const roundResult = await runRound(round);
+            const roundResult = await runRound(round, {});
+            if (roundResult.correct) {
+                points++;
+                setProgress(currentPoints, config.rewards, points / config.rounds.length);
+            }
+            await delayRange(config.delays.startNextRound);
+            hideCorrectColor();
+            hideAdvice();
             roundResults.push(roundResult);
         }
 
-        game.hide();
-
         return roundResults;
+    }
+
+    function waitForDemoButton() {
+        return new Promise(res => {
+            demoNextButton.click(() => {
+                demoNextButton.off('click');
+                res();
+            });
+        });
+    }
+
+    async function runDemo() {
+        demoArea.show();
+
+        const advisorBars = [];
+        for (let barInfo of config.demoAdvisorBars) {
+            const advisorBarWrapper = $('<div class="progress mt-3 position-relative progress-bar-wide">');
+            const advisorBar = $('<div class="progress-bar above-threshold" style="width: 0">');
+            advisorBarWrapper.append(advisorBar);
+            for (let info of barInfo) {
+                const rangeIndicator = generateRangeIndicator(info);
+                advisorBarWrapper.append(rangeIndicator);
+            }
+            advisorBarArea.append(advisorBarWrapper);
+            advisorBars.push([advisorBar, barInfo, advisorBarWrapper]);
+        }
+
+        setButtonColors(config.demoRounds[0].yellowOnLeft);
+        setButtonsDisabled(true);
+        demoText.text('To learn how the game works, play a demo against the computer');
+        await waitForDemoButton();
+
+        demoNextButton.prop('disabled', true);
+        demoArea.hide();
+        game.fadeIn();
+        await delay(1400);
+
+        const totalPoints = 10;
+        let points = 0;
+
+        for (let i = 0; i < 5; i++) {
+            const round = config.demoRounds[i];
+            const popovers = round.popovers || {};
+            const roundResult = await runRound(round);
+            if (round.showAdvisorViews) {
+                advisorBarDivider.fadeIn();
+                advisorBarArea.fadeIn();
+            }
+            if (roundResult.correct) {
+                points++;
+                const fraction = points / totalPoints;
+                setProgress(currentPoints, config.rewards, points / totalPoints);
+                for (let [el, barInfo] of advisorBars) {
+                    setProgress(el, barInfo, fraction);
+                }
+            }
+            let extraDelay = false;
+            const correctIcon = round.correctColor === COLOR.YELLOW ? yellowCorrect : blueCorrect;
+            if (roundResult.correct && popovers.correct) {
+                showPopover(correctIcon, popovers.correct);
+                extraDelay = true;
+            }
+            if (!roundResult.correct && popovers.incorrect) {
+                showPopover(correctIcon, popovers.incorrect);
+                extraDelay = true;
+            }
+            if (popovers.pointsBar) {
+                showPopover(pointsBar, popovers.pointsBar);
+                extraDelay = true;
+            }
+            if (popovers.advisorBar) {
+                showPopover(advisorBarArea, popovers.advisorBar);
+                extraDelay = true;
+            }
+            await delayRange(config.delays.startNextRound);
+            if (extraDelay) {
+                await delayRange(config.delays.demoPopoverExtra);
+            }
+            if ((roundResult.correct && popovers.correct) || (!roundResult.correct && popovers.incorrect)) {
+                correctIcon.popover('hide');
+            }
+            if (popovers.pointsBar) {
+                pointsBar.popover('hide');
+            }
+            if (popovers.advisorBar) {
+                advisorBarArea.popover('hide');
+            }
+            hideCorrectColor();
+            hideAdvice();
+        }
+
+        const fadeDuration = 400;
+        game.fadeOut(fadeDuration);
+        advisorBarDivider.fadeOut(fadeDuration);
+        advisorBarArea.fadeOut(fadeDuration);
+        await delay(fadeDuration);
+        setProgress(currentPoints, config.rewards, 0);
+
+        demoText.text('Ready to play for real?');
+        demoNextButton.prop('disabled', false);
+        demoArea.fadeIn(fadeDuration);
+        await waitForDemoButton();
+        demoArea.fadeOut(fadeDuration);
+        await delay(fadeDuration);
+
     }
 
     function sendData(submission) {
@@ -265,95 +415,9 @@ $(document).ready(async function() {
         });
     }
 
-    let domIdCounter = 0;
-    function uniqueDomId() {
-        return 'id-' + domIdCounter++;
-    }
-
-    function getFormQuestionObj(info) {
-        switch (info.type) {
-            case 'heading':
-                return $('<h3>').text(info.text);
-            case 'paragraph':
-                return $('<p>').text(info.text);
-            case 'radioButtons':
-                const radioFormGroup = $('<div class="form-group">');
-                radioFormGroup.append($('<label>').text(info.text));
-                for (let option of info.options) {
-                    const div = $('<div class="form-check">');
-
-                    const radioInput = $('<input type="radio" required>');
-                    const inputId = uniqueDomId();
-                    radioInput.attr('id', inputId);
-                    radioInput.attr('name', info.text);
-                    div.append(radioInput);
-
-                    div.append(' ');
-
-                    const label = $('<label>');
-                    label.attr('for', inputId);
-                    div.append(label);
-
-                    if (typeof option === 'string') {
-                        label.text(option);
-                        radioInput.val(option);
-                    } else {
-                        label.text(option.display);
-                        radioInput.val(option.value);
-                    }
-
-                    radioFormGroup.append(div);
-                }
-                return radioFormGroup;
-            case 'textField':
-                const textFieldFormGroup = $('<div class="form-group">');
-                const textFieldId = uniqueDomId();
-                textFieldFormGroup.append($('<label>').attr('for', textFieldId).text(info.text));
-                textFieldFormGroup.append($('<input type="text" class="form-control" required>').attr('id', textFieldId));
-                return textFieldFormGroup;
-            case 'audio':
-                const audioText = $('<div>').text(info.text);
-                // controlsList="nodownload" hides download button on chrome
-                // noinspection HtmlUnknownAttribute
-                const audio = $('<audio controls controlsList="nodownload">').attr('src', configBaseDir + info.source);
-                return $('<div class="form-group">').append(audioText, audio);
-            case 'image':
-                const imgText = $('<div>').text(info.text);
-                // noinspection HtmlRequiredAltAttribute,RequiredAttributes
-                const img = $('<img class="img-fluid">').attr('src', configBaseDir + info.source);
-                return $('<div class="form-group">').append(imgText, img);
-            default:
-                throw new Error('unknwon form field type ' + info.type);
-        }
-    }
-
-    async function runForm(formInfo) {
-        const formResponses = [];
-        formArea.show();
-        for (let questionGroup of formInfo) {
-            const questionGroupForm = $('<form autocomplete="off">');
-            for (let question of questionGroup) {
-                const formQuestionObj = getFormQuestionObj(question);
-                questionGroupForm.append(formQuestionObj);
-            }
-            questionGroupForm.append($('<div class="form-group">').append($('<button type="submit" class="btn btn-secondary">Next</button>')))
-            formArea.append(questionGroupForm);
-            await new Promise(res => {
-                questionGroupForm.submit(function (e) {
-                    e.preventDefault();
-                    res();
-                });
-            });
-            questionGroupForm.remove();
-            formResponses.push(...questionGroupForm.serializeArray());
-        }
-        formArea.hide();
-        return formResponses;
-    }
-
     function warnOnLeave() {
         $(window).on('beforeunload', () => {
-            return '!'; //not shown to user
+            return 'data will be lost'; //browser will not show message to user
         });
     }
 
@@ -367,10 +431,11 @@ $(document).ready(async function() {
 
         await loadConfig('/api/config');
         warnOnLeave();
-        const preFormResponses = await runForm(config.preForm);
+        await initGameDisplay();
+        await runDemo();
         const roundResults = await runGame();
-        const postFormResponses = await runForm(config.postForm);
-        const {fileName} = await sendData({preFormResponses, postFormResponses, roundResults});
+        game.hide();
+        const {fileName} = await sendData(roundResults);
         showThankYou(fileName);
 
     }

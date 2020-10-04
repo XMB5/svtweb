@@ -2,6 +2,16 @@
 
 Social Valuation Task in Web Browser
 
+## new ideas
+- don't switch side of colors
+    - more complicated
+- don't label sides A and B
+    - more complicated
+- don't use word "advisor" because it implies they are trying to help you
+    - "competitor" or "partner" instead
+- let user know number of rounds
+    - 43/240 in corner
+
 ## svt ideas
 - subtract points for wrong answer
     - 2 pts for correct, -1 pt for incorrect, to create a greater penalty for getting answers wrong
@@ -28,11 +38,8 @@ Social Valuation Task in Web Browser
 - a/b does not correspond with color: remove text? swap text with color?
 
 ## todo
-- show correct in middle
-    - user icon if advisor
-- randomize side of colors
+- allow configuring correct points and incorrect points
 - breaks every x rounds
-- sound form
 - do https://en.wikipedia.org/wiki/Positive_and_Negative_Affect_Schedule automatically
    
 ## programming ideas

@@ -12,15 +12,20 @@
 </nav>
 
 <div class="container mt-2">
-    <div id="formArea"></div>
+    <div id="demoArea" style="display: none">
+        <h3>Demo</h3>
+        <p id="demoText"></p>
+        <button id="demoNextButton" type="button" class="btn btn-secondary">OK</button>
+    </div>
     <div id="game" style="display: none">
         <div class="row align-items-center">
             <div class="col-4">
-                <button id="leftButton" type="button" class="btn giant-button" disabled>A</button>
+                <button id="leftButton" type="button" class="btn giant-button" disabled>
+                    <!-- must register icons in js -->
+                    <i id="leftAdvice" class="fas fa-user icon-hidden icon-hidden"></i>
+                </button>
             </div>
             <div class="col-1">
-                <!-- must register icons in js -->
-                <i id="leftAdvice" class="fas fa-user fa-3x float-left" style="display: none"></i>
             </div>
             <div class="col-2 text-center">
                 <i id="gameLoading" class="fas fa-circle-notch fa-spin fa-2x" style="display: none"></i>
@@ -29,15 +34,20 @@
                 <i id="blueCorrect" class="fas fa-square fa-2x text-primary" style="display: none"></i>
             </div>
             <div class="col-1">
-                <i id="rightAdvice" class="fas fa-user fa-3x float-right" style="display: none"></i>
             </div>
             <div class="col-4">
-                <button id="rightButton" type="button" class="btn giant-button" disabled>B</button>
+                <button id="rightButton" type="button" class="btn giant-button" disabled>
+                    <i id="rightAdvice" class="fas fa-user icon-hidden"></i>
+                </button>
             </div>
         </div>
         <div id="pointsBar" class="progress mt-3 position-relative progress-bar-wide">
             <div id="currentPoints" class="progress-bar above-threshold" style="width: 0"></div>
         </div>
+    </div>
+    <hr id="advisorBarDivider" style="display: none">
+    <div id="advisorBarArea" style="display: none">
+        <h4>Hypothetical advisor goals</h4>
     </div>
     <div id="thankYou" style="display: none"></div>
 </div>
