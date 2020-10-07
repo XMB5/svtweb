@@ -60,7 +60,8 @@ const init = async () => {
 
     const server = Hapi.server({
         port,
-        host
+        host,
+        debug: false
     });
 
     await server.register(Inert);
@@ -108,7 +109,8 @@ const init = async () => {
     }
 
     server.ext('onPreResponse', (request, h) => {
-        if (request.response.isBoom) {
+        //log all errors except 404
+        if (request.response.isBoom && !(request.response.output && request.response.output.statusCode === 404)) {
             log('error handling request to', request.path, '\n' + request.response.stack);
         }
         return h.continue;
