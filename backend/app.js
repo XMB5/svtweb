@@ -23,7 +23,10 @@ const init = async () => {
     const redcapApiTokenFile = process.env.SVTWEB_REDCAP_API_TOKEN_FILE;
     let redcapApiToken;
     if (redcapApiTokenFile) {
+        log('read api token file', redcapApiTokenFile);
         redcapApiToken = await readFilePromise(redcapApiTokenFile, 'utf8');
+    } else {
+        redcapApiToken = '';
     }
     const submissionSaver = new SubmissionSaver({
         submissionsDir: process.env.SVTWEB_SUBMISSIONS_DIR,
@@ -32,8 +35,7 @@ const init = async () => {
         redcapCsvField: process.env.SVTWEB_REDCAP_CSV_FIELD,
         redcapRewardField: process.env.SVTWEB_REDCAP_REWARD_FIELD
     });
-    const redcapAllowExport = process.env.SVTWEB_REDCAP_ALLOW_EXPORT === '1';
-    await submissionSaver.checkAccess(redcapAllowExport);
+
     if (submissionSaver.isSavingToFile()) {
         log('submission will be saved to directory', submissionSaver.submissionsDir);
     }
@@ -43,11 +45,15 @@ const init = async () => {
         }
         log('submissions will be saved to redcap at api url', submissionSaver.redcapApiUrl,
             'in csv field', submissionSaver.redcapCsvField,
-            'with reward field', submissionSaver.redcapRewardField || '(none)');
+            'with reward field', submissionSaver.redcapRewardField || '(none)',
+            'with api token of length', submissionSaver.redcapApiToken.length);
     }
     if (!submissionSaver.isSavingToRedcap() && !submissionSaver.isSavingToFile()) {
         log('submissions will not be saved anywhere');
     }
+
+    const redcapAllowExport = process.env.SVTWEB_REDCAP_ALLOW_EXPORT === '1';
+    await submissionSaver.checkAccess(redcapAllowExport);
 
     const port = parseInt(process.env.SVTWEB_PORT) || 9090;
     const host = process.env.SVTWEB_HOST || 'localhost';
