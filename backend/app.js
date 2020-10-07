@@ -24,7 +24,7 @@ const init = async () => {
     let redcapApiToken;
     if (redcapApiTokenFile) {
         log('read api token file', redcapApiTokenFile);
-        redcapApiToken = await readFilePromise(redcapApiTokenFile, 'utf8').trim();
+        redcapApiToken = (await readFilePromise(redcapApiTokenFile, 'utf8')).trim();
     } else {
         redcapApiToken = '';
     }
