@@ -99,6 +99,10 @@ class SubmissionSaver {
     }
 
     async saveCsvToRedcap({csvStr, submissionId, reward, eventName, recordId}) {
+        if (!recordId) {
+            throw new Error('empty recordId, required when submitting to redcap');
+        }
+
         //save csv file
         const fileForm = new FormData();
         fileForm.append('token', this.redcapApiToken);

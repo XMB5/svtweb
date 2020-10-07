@@ -1,4 +1,33 @@
 {
+  "demoText": {
+    "heading": "Intro",
+    "start": "To learn how the game works, play a demo against the computer",
+    "finish": "Ready to play for real?",
+    "nextButton": "OK",
+    "advisorBarsHeading": "Potential advisor goals"
+  },
+  "endScreenText": {
+    "heading": "Finished!",
+    "body": "Reward: %REWARD%\nSubmission ID: %SUBMISSION_ID%"
+  },
+  "delays": {
+    "waitForAdvice": {
+      "min": 1000,
+      "max": 2000
+    },
+    "waitForCorrect": {
+      "min": 1000,
+      "max": 2000
+    },
+    "startNextRound": {
+      "min": 2000,
+      "max": 4000
+    },
+    "demoPopoverExtra": {
+      "min": 3000,
+      "max": 3000
+    }
+  },
   "noReward": "$0",
   "rewards": [
     {
@@ -64,24 +93,7 @@
       }
     ]
   ],
-  "delays": {
-    "waitForAdvice": {
-      "min": 1000,
-      "max": 2000
-    },
-    "waitForCorrect": {
-      "min": 1000,
-      "max": 2000
-    },
-    "startNextRound": {
-      "min": 2000,
-      "max": 4000
-    },
-    "demoPopoverExtra": {
-      "min": 3000,
-      "max": 3000
-    }
-  },
+  "demoTotalPoints": 10,
   "demoRounds": [
     {
       "yellowOnLeft": true,

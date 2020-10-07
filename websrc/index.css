@@ -28,3 +28,7 @@
 .above-threshold {
     z-index: 110;
 }
+
+.text-with-whitespace {
+    white-space: pre-wrap;
+}

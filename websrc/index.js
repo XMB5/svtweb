@@ -5,8 +5,6 @@ import './index.css';
 import {library, dom} from '@fortawesome/fontawesome-svg-core';
 import {faUser, faCircleNotch, faQuestionCircle, faSquare} from '@fortawesome/free-solid-svg-icons';
 
-console.log('svtweb index.js loaded');
-
 library.add(faUser, faCircleNotch, faQuestionCircle, faSquare);
 dom.i2svg();
 
@@ -14,11 +12,6 @@ $(document).ready(async function() {
 
     let config;
     let configBaseDir;
-
-    const TEXT = {
-        THANK_YOU: 'Thank you!',
-        SUBMISSION_ID: 'Submission ID: %s'
-    };
 
     const BTN_COLORS = {
         YELLOW: 'btn-warning',
@@ -53,6 +46,7 @@ $(document).ready(async function() {
     const currentPoints = $('#currentPoints');
 
     const demoArea = $('#demoArea');
+    const demoHeading = $('#demoHeading');
     const demoText = $('#demoText');
     const demoNextButton = $('#demoNextButton');
 
@@ -60,8 +54,9 @@ $(document).ready(async function() {
 
     const advisorBarDivider = $('#advisorBarDivider');
     const advisorBarArea = $('#advisorBarArea');
+    const advisorBarsHeading = $('#advisorBarsHeading');
 
-    const thankYou = $('#thankYou');
+    const endScreen = $('#endScreen');
 
     function delay(ms) {
         return new Promise(res => setTimeout(res, ms / (window.aaa || 1)));
@@ -201,8 +196,6 @@ $(document).ready(async function() {
     }
 
     async function runRound(round) {
-        console.log('run round %o', round);
-
         const popovers = round.popovers || {};
 
         setButtonColors(round.yellowOnLeft);
@@ -298,8 +291,6 @@ $(document).ready(async function() {
     }
 
     async function runDemo() {
-        demoArea.show();
-
         const advisorBars = [];
         for (let barInfo of config.demoAdvisorBars) {
             const advisorBarWrapper = $('<div class="progress mt-3 position-relative progress-bar-wide">');
@@ -312,10 +303,14 @@ $(document).ready(async function() {
             advisorBarArea.append(advisorBarWrapper);
             advisorBars.push([advisorBar, barInfo, advisorBarWrapper]);
         }
+        advisorBarsHeading.text(config.demoText.advisorBarsHeading);
 
         setButtonColors(config.demoRounds[0].yellowOnLeft);
         setButtonsDisabled(true);
-        demoText.text('To learn how the game works, play a demo against the computer');
+        demoHeading.text(config.demoText.heading);
+        demoText.text(config.demoText.start);
+        demoNextButton.text(config.demoText.nextButton);
+        demoArea.show();
         await waitForDemoButton();
 
         demoNextButton.prop('disabled', true);
@@ -323,7 +318,6 @@ $(document).ready(async function() {
         game.fadeIn();
         await delay(1400);
 
-        const totalPoints = 10;
         let points = 0;
 
         for (let i = 0; i < 5; i++) {
@@ -336,8 +330,8 @@ $(document).ready(async function() {
             }
             if (roundResult.correct) {
                 points++;
-                const fraction = points / totalPoints;
-                setProgress(currentPoints, config.rewards, points / totalPoints);
+                const fraction = points / config.demoTotalPoints;
+                setProgress(currentPoints, config.rewards, fraction);
                 for (let [el, barInfo] of advisorBars) {
                     setProgress(el, barInfo, fraction);
                 }
@@ -384,7 +378,7 @@ $(document).ready(async function() {
         await delay(fadeDuration);
         setProgress(currentPoints, config.rewards, 0);
 
-        demoText.text('Ready to play for real?');
+        demoText.text(config.demoText.finish);
         demoNextButton.prop('disabled', false);
         demoArea.fadeIn(fadeDuration);
         await waitForDemoButton();
@@ -421,10 +415,11 @@ $(document).ready(async function() {
         });
     }
 
-    function showThankYou(submissionId) {
-        thankYou.append($('<h3>').text(TEXT.THANK_YOU));
-        thankYou.append($('<p>').text(TEXT.SUBMISSION_ID.replace('%s', submissionId)));
-        thankYou.show();
+    function showEndScreen(rewardStr, submissionId) {
+        endScreen.append($('<h3>').text(config.endScreenText.heading));
+        const body = config.endScreenText.body.replace('%SUBMISSION_ID%', submissionId).replace('%REWARD%', rewardStr);
+        endScreen.append($('<p class="text-with-whitespace">').text(body));
+        endScreen.show();
     }
 
     async function main() {
@@ -441,7 +436,7 @@ $(document).ready(async function() {
             reward: rewardStr,
             searchParams: window.location.search
         });
-        showThankYou(submissionId);
+        showEndScreen(rewardStr, submissionId);
 
     }
 
