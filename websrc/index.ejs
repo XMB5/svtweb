@@ -21,23 +21,39 @@
         <div class="row align-items-center">
             <div class="col-4">
                 <button id="leftButton" type="button" class="btn giant-button" disabled>
-                    <!-- must register icons in js -->
-                    <i id="leftAdvice" class="fas fa-user icon-hidden icon-hidden"></i>
+                    <!--
+                    must register icons in js
+                    do not try to modify an <i> because it might change into <svg> at any time
+                    instead, create a <span> or <div> around it
+                    -->
+                    <span id="leftAdvice" class="icon-hidden">
+                        <i class="fas fa-user"></i>
+                    </span>
                 </button>
             </div>
             <div class="col-1">
             </div>
             <div class="col-2 text-center">
-                <i id="gameLoading" class="fas fa-circle-notch fa-spin fa-2x" style="display: none"></i>
-                <i id="makeDecision" class="fas fa-question-circle fa-2x" style="display: none"></i>
-                <i id="yellowCorrect" class="fas fa-square fa-2x text-warning" style="display: none"></i>
-                <i id="blueCorrect" class="fas fa-square fa-2x text-primary" style="display: none"></i>
+                <div id="gameLoading" style="display: none">
+                    <i class="fas fa-circle-notch fa-spin fa-2x"></i>
+                </div>
+                <div id="makeDecision" style="display: none">
+                    <i class="fas fa-question-circle fa-2x"></i>
+                </div>
+                <div id="yellowCorrect" style="display: none">
+                    <i class="fas fa-square fa-2x text-warning"></i>
+                </div>
+                <div id="blueCorrect" style="display: none">
+                    <i class="fas fa-square fa-2x text-primary"></i>
+                </div>
             </div>
             <div class="col-1">
             </div>
             <div class="col-4">
                 <button id="rightButton" type="button" class="btn giant-button" disabled>
-                    <i id="rightAdvice" class="fas fa-user icon-hidden"></i>
+                    <span id="rightAdvice" class="icon-hidden">
+                        <i class="fas fa-user"></i>
+                    </span>
                 </button>
             </div>
         </div>
