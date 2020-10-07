@@ -2,7 +2,7 @@
 
 Social Valuation Task in Web Browser
 
-## new ideas
+## svt ideas
 - don't switch side of colors
     - more complicated
 - don't label sides A and B
@@ -11,8 +11,6 @@ Social Valuation Task in Web Browser
     - "competitor" or "partner" instead
 - let user know number of rounds
     - 43/240 in corner
-
-## svt ideas
 - subtract points for wrong answer
     - 2 pts for correct, -1 pt for incorrect, to create a greater penalty for getting answers wrong
 - might want to add $3 threshold at 100% because people might stop trying once they get the maximum $2
@@ -40,8 +38,5 @@ Social Valuation Task in Web Browser
 ## todo
 - allow configuring correct points and incorrect points
 - breaks every x rounds
-- do https://en.wikipedia.org/wiki/Positive_and_Negative_Affect_Schedule automatically
    
 ## programming ideas
-- prevent csrf
-- .dockerignore node_modules

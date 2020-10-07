@@ -108,6 +108,11 @@ const init = async () => {
         return h.continue;
     });
 
+    process.on('SIGTERM', async () => {
+        log('caught SIGTERM, stopping');
+        await server.stop();
+    });
+
     await server.start();
     log('listening on', server.info.uri);
 };
