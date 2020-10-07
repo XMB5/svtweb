@@ -2,29 +2,55 @@
 
 const Hapi = require('@hapi/hapi');
 const Inert = require('@hapi/inert');
-
 const SubmissionSaver = require('./SubmissionSaver.js');
-const log = require('./log.js')('app');
+const log = require('./log.js')('main');
+const fs = require('fs');
+const {promisify} = require('util');
+
+const readFilePromise = promisify(fs.readFile);
 
 const init = async () => {
 
-    const configDir = process.env.API_CONFIG_DIR;
+    const configDir = process.env.SVTWEB_CONFIG_DIR;
     if (!configDir) {
-        throw new Error('pass svt config directory in environment variable API_CONFIG_DIR');
+        throw new Error('must pass svt config directory in environment variable SVTWEB_CONFIG_DIR');
     }
-    const submissionsDir = process.env.API_SUBMISSIONS_DIR;
-    if (!submissionsDir) {
-        throw new Error('pass submissions directory in environment variable API_SUBMISSIONS_DIR');
-    }
-    const staticDir = process.env.API_STATIC_DIR;
+    const staticDir = process.env.SVTWEB_STATIC_DIR;
     if (!staticDir) {
-        log('environment variable API_STATIC_DIR is empty - will not serve any static files');
+        log('not serving static files (environment variable SVTWEB_STATIC_DIR is empty)');
     }
-    const port = parseInt(process.env.API_PORT) || 9090;
-    const host = process.env.API_HOST || 'localhost';
 
-    const submissionSaver = new SubmissionSaver(submissionsDir);
-    await submissionSaver.checkAccess();
+    const redcapApiTokenFile = process.env.SVTWEB_REDCAP_API_TOKEN_FILE;
+    let redcapApiToken;
+    if (redcapApiTokenFile) {
+        redcapApiToken = await readFilePromise(redcapApiTokenFile, 'utf8');
+    }
+    const submissionSaver = new SubmissionSaver({
+        submissionsDir: process.env.SVTWEB_SUBMISSIONS_DIR,
+        redcapApiUrl: process.env.SVTWEB_REDCAP_API_URL,
+        redcapApiToken,
+        redcapCsvField: process.env.SVTWEB_REDCAP_CSV_FIELD,
+        redcapRewardField: process.env.SVTWEB_REDCAP_REWARD_FIELD
+    });
+    const redcapAllowExport = process.env.SVTWEB_REDCAP_ALLOW_EXPORT === '1';
+    await submissionSaver.checkAccess(redcapAllowExport);
+    if (submissionSaver.isSavingToFile()) {
+        log('submission will be saved to directory', submissionSaver.submissionsDir);
+    }
+    if (submissionSaver.isSavingToRedcap()) {
+        if (!submissionSaver.redcapApiToken) {
+            throw new Error('redcap api url set, but missing redcap api token');
+        }
+        log('submissions will be saved to redcap at api url', submissionSaver.redcapApiUrl,
+            'in csv field', submissionSaver.redcapCsvField,
+            'with reward field', submissionSaver.redcapRewardField || '(none)');
+    }
+    if (!submissionSaver.isSavingToRedcap() && !submissionSaver.isSavingToFile()) {
+        log('submissions will not be saved anywhere');
+    }
+
+    const port = parseInt(process.env.SVTWEB_PORT) || 9090;
+    const host = process.env.SVTWEB_HOST || 'localhost';
 
     const server = Hapi.server({
         port,
@@ -47,10 +73,14 @@ const init = async () => {
     server.route({
         method: 'POST',
         path: '/api/submitData',
-        handler: async request => {
-            const submissionObj = request.payload;
-            const fileName = await submissionSaver.saveSubmission(submissionObj);
-            return {fileName};
+        handler: async (request, h) => {
+            if (request.headers['x-svtweb-anti-csrf'] === '1') {
+                const submissionObj = request.payload;
+                const submissionId = await submissionSaver.saveSubmission(submissionObj);
+                return {submissionId};
+            } else {
+                return h.response().code(403);
+            }
         },
         config: {
             payload: {
@@ -71,8 +101,15 @@ const init = async () => {
         });
     }
 
+    server.ext('onPreResponse', (request, h) => {
+        if (request.response.isBoom) {
+            log('error handling request to', request.path, '\n' + request.response.stack);
+        }
+        return h.continue;
+    });
+
     await server.start();
-    console.log('Server running on %s', server.info.uri);
+    log('listening on', server.info.uri);
 };
 
 process.on('unhandledRejection', err => {

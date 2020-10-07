@@ -7,7 +7,9 @@
   },
   "dependencies": {
     "@hapi/hapi": "^20.0.1",
-    "@hapi/inert": "^6.0.3"
+    "@hapi/inert": "^6.0.3",
+    "axios": "^0.20.0",
+    "form-data": "^3.0.0"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.30",

@@ -16,12 +16,6 @@ $(document).ready(async function() {
     let configBaseDir;
 
     const TEXT = {
-        WAIT_FOR_ADVICE: 'Wait for advice...',
-        CHOOSE: 'Choose',
-        WAIT_FOR_CORRECT: 'Wait for correct answer...',
-        CORRECT: 'Correct',
-        INCORRECT: 'Incorrect',
-        PROGRESS_WILL_BE_LOST: 'Progress will be lost!',
         THANK_YOU: 'Thank you!',
         SUBMISSION_ID: 'Submission ID: %s'
     };
@@ -164,7 +158,9 @@ $(document).ready(async function() {
                 bestReward = reward;
             }
         }
-        el.text(bestReward ? bestReward.text : config.noReward);
+        const rewardStr = bestReward ? bestReward.text : config.noReward;
+        el.text(rewardStr);
+        return rewardStr;
     }
 
     function generateRangeIndicator(info) {
@@ -271,6 +267,7 @@ $(document).ready(async function() {
 
         let points = 0;
         const roundResults = [];
+        let rewardStr = config.noReward;
 
         //temp
         config.rounds = config.rounds.slice(0, 5);
@@ -280,7 +277,7 @@ $(document).ready(async function() {
             const roundResult = await runRound(round, {});
             if (roundResult.correct) {
                 points++;
-                setProgress(currentPoints, config.rewards, points / config.rounds.length);
+                rewardStr = setProgress(currentPoints, config.rewards, points / config.rounds.length);
             }
             await delayRange(config.delays.startNextRound);
             hideCorrectColor();
@@ -288,7 +285,7 @@ $(document).ready(async function() {
             roundResults.push(roundResult);
         }
 
-        return roundResults;
+        return {roundResults, rewardStr};
     }
 
     function waitForDemoButton() {
@@ -401,7 +398,10 @@ $(document).ready(async function() {
             method: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(submission),
-            dataType: 'json'
+            dataType: 'json',
+            headers: {
+                'X-Svtweb-Anti-Csrf': '1'
+            }
         });
     }
 
@@ -421,9 +421,9 @@ $(document).ready(async function() {
         });
     }
 
-    function showThankYou(fileName) {
+    function showThankYou(submissionId) {
         thankYou.append($('<h3>').text(TEXT.THANK_YOU));
-        thankYou.append($('<p>').text(TEXT.SUBMISSION_ID.replace('%s', fileName)));
+        thankYou.append($('<p>').text(TEXT.SUBMISSION_ID.replace('%s', submissionId)));
         thankYou.show();
     }
 
@@ -433,10 +433,15 @@ $(document).ready(async function() {
         warnOnLeave();
         await initGameDisplay();
         await runDemo();
-        const roundResults = await runGame();
+        const {roundResults, rewardStr} = await runGame();
         game.hide();
-        const {fileName} = await sendData(roundResults);
-        showThankYou(fileName);
+        //todo: add "sending..."
+        const {submissionId} = await sendData({
+            roundResults,
+            reward: rewardStr,
+            searchParams: window.location.search
+        });
+        showThankYou(submissionId);
 
     }
 
