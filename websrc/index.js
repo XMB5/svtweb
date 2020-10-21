@@ -30,6 +30,13 @@ $(document).ready(async function() {
         BLUE: 1
     };
 
+    const DEMO_BUTTON = {
+        NEXT: 0,
+        REDO: 1
+    };
+
+    const formArea = $('#formArea');
+
     const leftButton = $('#leftButton');
     const rightButton = $('#rightButton');
 
@@ -48,6 +55,7 @@ $(document).ready(async function() {
     const demoArea = $('#demoArea');
     const demoHeading = $('#demoHeading');
     const demoText = $('#demoText');
+    const demoRedoButton = $('#demoRedoButton');
     const demoNextButton = $('#demoNextButton');
 
     const game = $('#game');
@@ -57,14 +65,20 @@ $(document).ready(async function() {
     const advisorBarsHeading = $('#advisorBarsHeading');
 
     const endScreen = $('#endScreen');
+    
+    const fadeDuration = 400;
 
-    function delay(ms) {
+    function delayMs(ms) {
         return new Promise(res => setTimeout(res, ms / (window.aaa || 1)));
     }
 
-    function delayRange({min, max}) {
-        const ms = (Math.random() * (max - min)) + min;
-        return delay(ms);
+    function delayWithConfig(delayConfig) {
+        if (typeof(delayConfig) === 'number') {
+            return delayMs(delayConfig);
+        } else {
+            const ms = (Math.random() * (delayConfig.max - delayConfig.min)) + delayConfig.min;
+            return delayMs(ms);
+        }
     }
 
     function hideAdvice() {
@@ -101,17 +115,6 @@ $(document).ready(async function() {
             leftButton.click(handler);
             rightButton.click(handler);
         });
-    }
-
-    function setButtonColors(yellowOnLeft) {
-        const yellowBtn = yellowOnLeft ? leftButton : rightButton;
-        const blueBtn = yellowOnLeft ? rightButton : leftButton;
-
-        yellowBtn.addClass(BTN_COLORS.YELLOW);
-        yellowBtn.removeClass(BTN_COLORS.BLUE);
-
-        blueBtn.addClass(BTN_COLORS.BLUE);
-        blueBtn.removeClass(BTN_COLORS.YELLOW);
     }
 
     function getSideForColor(color, yellowOnLeft) {
@@ -173,17 +176,17 @@ $(document).ready(async function() {
 
     async function loadAdviceAnimation() {
         gameLoading.show();
-        await delayRange(config.delays.waitForAdvice);
+        await delayWithConfig(config.delays.waitForAdvice);
         gameLoading.hide();
     }
 
     async function loadCorrectAnimation() {
         gameLoading.show();
-        await delayRange(config.delays.waitForCorrect);
+        await delayWithConfig(config.delays.waitForCorrect);
         gameLoading.hide();
     }
 
-    async function showPopover(el, content) {
+    function showPopover(el, content) {
         el.data('popover-content', content);
         el.popover({
             content: function() {
@@ -195,104 +198,31 @@ $(document).ready(async function() {
         el.popover('show');
     }
 
-    async function runRound(round) {
-        const popovers = round.popovers || {};
-
-        setButtonColors(round.yellowOnLeft);
-
-        await loadAdviceAnimation();
-
-        const correctSide = getSideForColor(round.correctColor, round.yellowOnLeft);
-        const adviceSide = round.adviceCorrect ? correctSide : otherSide(correctSide);
-        if (!round.hideAdvice) {
-            showAdviceForSide(adviceSide);
-        }
-        setButtonsDisabled(false);
-        if (popovers.leftButton) {
-            showPopover(leftButton, popovers.leftButton);
-        }
-        if (popovers.rightButton) {
-            showPopover(rightButton, popovers.rightButton);
-        }
-        let adviceIcon;
-        if (popovers.advice) {
-            adviceIcon = adviceSide === SIDE.LEFT ? leftAdvice : rightAdvice;
-            showPopover(adviceIcon, popovers.advice);
-        }
-        const adviceShownTime = performance.now();
-
-        const sideChosen = await waitForDecision();
-        if (popovers.leftButton) {
-            leftButton.popover('hide');
-        }
-        if (popovers.rightButton) {
-            rightButton.popover('hide');
-        }
-        if (popovers.advice) {
-            adviceIcon.popover('hide');
-        }
-        const sideChosenTime = performance.now();
-        const decisionMs = sideChosenTime - adviceShownTime;
-        const colorChosen = getColorForSide(sideChosen, round.yellowOnLeft);
-
-        const selectedButtonEl = document.activeElement;
-        if (selectedButtonEl) {
-            selectedButtonEl.blur();
-        }
-        setButtonsDisabled(true);
-        await loadCorrectAnimation();
-
-        showCorrectColor(round.correctColor);
-        const correct = colorChosen === round.correctColor;
-
-        return {round, colorChosen, correct, decisionMs};
-    }
-
     async function initGameDisplay() {
+        leftButton.addClass(BTN_COLORS.YELLOW);
+        rightButton.addClass(BTN_COLORS.BLUE);
         for (let reward of config.rewards) {
             const rangeIndicator = generateRangeIndicator(reward);
             pointsBar.append(rangeIndicator);
         }
     }
 
-    async function runGame() {
-        game.fadeIn();
-
-        let points = 0;
-        const roundResults = [];
-        let rewardStr = config.noReward;
-
-        //temp
-        config.rounds = config.rounds.slice(0, 5);
-
-        for (let i = 0; i < config.rounds.length; i++) {
-            const round = config.rounds[i];
-            const roundResult = await runRound(round, {});
-            if (roundResult.correct) {
-                points++;
-                rewardStr = setProgress(currentPoints, config.rewards, points / config.rounds.length);
-            }
-            await delayRange(config.delays.startNextRound);
-            hideCorrectColor();
-            hideAdvice();
-            roundResults.push(roundResult);
-        }
-
-        return {roundResults, rewardStr};
-    }
-
     function waitForDemoButton() {
         return new Promise(res => {
             demoNextButton.click(() => {
                 demoNextButton.off('click');
-                res();
+                res(DEMO_BUTTON.NEXT);
+            });
+            demoRedoButton.click(() => {
+                demoRedoButton.off('click');
+                res(DEMO_BUTTON.REDO);
             });
         });
     }
 
-    async function runDemo() {
+    async function runGame(gameConfig) {
         const advisorBars = [];
-        for (let barInfo of config.demoAdvisorBars) {
+        for (let barInfo of gameConfig.advisorBars || []) {
             const advisorBarWrapper = $('<div class="progress mt-3 position-relative progress-bar-wide">');
             const advisorBar = $('<div class="progress-bar above-threshold" style="width: 0">');
             advisorBarWrapper.append(advisorBar);
@@ -303,41 +233,110 @@ $(document).ready(async function() {
             advisorBarArea.append(advisorBarWrapper);
             advisorBars.push([advisorBar, barInfo, advisorBarWrapper]);
         }
-        advisorBarsHeading.text(config.demoText.advisorBarsHeading);
-
-        setButtonColors(config.demoRounds[0].yellowOnLeft);
-        setButtonsDisabled(true);
-        demoHeading.text(config.demoText.heading);
-        demoText.text(config.demoText.start);
-        demoNextButton.text(config.demoText.nextButton);
-        demoArea.show();
-        await waitForDemoButton();
-
-        demoNextButton.prop('disabled', true);
-        demoArea.hide();
-        game.fadeIn();
-        await delay(1400);
 
         let points = 0;
+        let rewardStr = config.noReward;
+        const roundResults = [];
 
-        for (let i = 0; i < 5; i++) {
-            const round = config.demoRounds[i];
+        game.fadeIn(fadeDuration);
+        await delayMs(fadeDuration * 4);
+
+        for (let i = 0; i < gameConfig.rounds.length; i++) {
+            hideCorrectColor();
+            hideAdvice();
+
+            const round = gameConfig.rounds[i];
+
             const popovers = round.popovers || {};
-            const roundResult = await runRound(round);
+            const correctColor = round.yellowCorrect ? COLOR.YELLOW : COLOR.BLUE;
+
+            let yellowText;
+            let blueText;
+            if (gameConfig.hidePointsOnButtons || round.hidePointsOnButtons) {
+                yellowText = '';
+                blueText = '';
+            } else {
+                yellowText = round.yellowPoints === undefined ? '' : round.yellowPoints.toString();
+                blueText = round.bluePoints === undefined ? '' : round.bluePoints.toString();
+            }
+
+            const yellowBtn = round.yellowOnLeft ? leftButton : rightButton;
+            const blueBtn = round.yellowOnLeft ? rightButton : leftButton;
+
+            yellowBtn.addClass(BTN_COLORS.YELLOW);
+            yellowBtn.removeClass(BTN_COLORS.BLUE);
+            yellowBtn.find('.points').text(yellowText);
+
+            blueBtn.addClass(BTN_COLORS.BLUE);
+            blueBtn.removeClass(BTN_COLORS.YELLOW);
+            blueBtn.find('.points').text(blueText);
+
+            await loadAdviceAnimation();
+
+            const correctSide = getSideForColor(correctColor, round.yellowOnLeft);
+            const adviceSide = round.adviceCorrect ? correctSide : otherSide(correctSide);
+            if (!round.hideAdvice) {
+                showAdviceForSide(adviceSide);
+            }
+            setButtonsDisabled(false);
+            if (popovers.yellowButton) {
+                showPopover(yellowBtn, popovers.yellowButton);
+            }
+            if (popovers.blueButton) {
+                showPopover(blueBtn, popovers.blueButton);
+            }
+            let adviceIcon;
+            if (popovers.advice) {
+                adviceIcon = adviceSide === SIDE.LEFT ? leftAdvice : rightAdvice;
+                showPopover(adviceIcon, popovers.advice);
+            }
+            const adviceShownTime = performance.now();
+
+            const sideChosen = await waitForDecision();
+            if (popovers.yellowButton) {
+                yellowBtn.popover('hide');
+            }
+            if (popovers.blueButton) {
+                blueBtn.popover('hide');
+            }
+            if (popovers.advice) {
+                adviceIcon.popover('hide');
+            }
+            const sideChosenTime = performance.now();
+            const decisionMs = sideChosenTime - adviceShownTime;
+            const colorChosen = getColorForSide(sideChosen, round.yellowOnLeft);
+
+            const selectedButtonEl = document.activeElement;
+            if (selectedButtonEl) {
+                selectedButtonEl.blur();
+            }
+            setButtonsDisabled(true);
+            await loadCorrectAnimation();
+
+            showCorrectColor(correctColor);
+            const correct = colorChosen === correctColor;
+            let pointsChange;
+            if (correct) {
+                pointsChange = colorChosen === COLOR.YELLOW ? round.yellowPoints : round.bluePoints;
+            } else {
+                pointsChange = gameConfig.incorrectPenalty;
+            }
+
+            const roundResult = {round, colorChosen, correct, pointsChange, decisionMs};
+            roundResults.push(roundResult);
+
             if (round.showAdvisorViews) {
                 advisorBarDivider.fadeIn();
                 advisorBarArea.fadeIn();
             }
-            if (roundResult.correct) {
-                points++;
-                const fraction = points / config.demoTotalPoints;
-                setProgress(currentPoints, config.rewards, fraction);
-                for (let [el, barInfo] of advisorBars) {
-                    setProgress(el, barInfo, fraction);
-                }
+            points += roundResult.pointsChange;
+            const fraction = points / gameConfig.totalPoints;
+            rewardStr = setProgress(currentPoints, config.rewards, fraction);
+            for (let [el, barInfo] of advisorBars) {
+                setProgress(el, barInfo, fraction);
             }
             let extraDelay = false;
-            const correctIcon = round.correctColor === COLOR.YELLOW ? yellowCorrect : blueCorrect;
+            const correctIcon = correctColor === COLOR.YELLOW ? yellowCorrect : blueCorrect;
             if (roundResult.correct && popovers.correct) {
                 showPopover(correctIcon, popovers.correct);
                 extraDelay = true;
@@ -354,10 +353,11 @@ $(document).ready(async function() {
                 showPopover(advisorBarArea, popovers.advisorBar);
                 extraDelay = true;
             }
-            await delayRange(config.delays.startNextRound);
+            await delayWithConfig(config.delays.startNextRound);
             if (extraDelay) {
-                await delayRange(config.delays.demoPopoverExtra);
+                await delayWithConfig(config.delays.popoverExtra);
             }
+
             if ((roundResult.correct && popovers.correct) || (!roundResult.correct && popovers.incorrect)) {
                 correctIcon.popover('hide');
             }
@@ -367,24 +367,169 @@ $(document).ready(async function() {
             if (popovers.advisorBar) {
                 advisorBarArea.popover('hide');
             }
-            hideCorrectColor();
-            hideAdvice();
+
+            if (round.form) {
+                game.fadeOut(fadeDuration);
+                const advisorBarsWereHidden = advisorBarDivider.is(':hidden');
+                advisorBarDivider.fadeOut(fadeDuration);
+                advisorBarArea.fadeOut(fadeDuration);
+                await delayMs(fadeDuration);
+
+                roundResult.formResponses = await runForm(round.form);
+
+                if (i < (gameConfig.rounds.length - 1)) {
+                    //before last round
+                    game.fadeIn(fadeDuration);
+                    if (!advisorBarsWereHidden) {
+                        advisorBarDivider.fadeIn(fadeDuration);
+                        advisorBarArea.fadeIn(fadeDuration);
+                    }
+                }
+            }
         }
 
-        const fadeDuration = 400;
-        game.fadeOut(fadeDuration);
-        advisorBarDivider.fadeOut(fadeDuration);
-        advisorBarArea.fadeOut(fadeDuration);
-        await delay(fadeDuration);
+        if (!game.is(':hidden')) {
+            game.fadeOut(fadeDuration);
+            advisorBarDivider.fadeOut(fadeDuration);
+            advisorBarArea.fadeOut(fadeDuration);
+            await delayMs(fadeDuration);
+            await delayMs(fadeDuration);
+        }
+
+        for (let [el, barInfo, wrapper] of advisorBars) {
+            wrapper.remove();
+        }
+
         setProgress(currentPoints, config.rewards, 0);
 
-        demoText.text(config.demoText.finish);
-        demoNextButton.prop('disabled', false);
-        demoArea.fadeIn(fadeDuration);
-        await waitForDemoButton();
-        demoArea.fadeOut(fadeDuration);
-        await delay(fadeDuration);
+        hideAdvice();
+        hideCorrectColor();
 
+        leftButton.add(rightButton).find('.points').text('');
+
+        return {roundResults, rewardStr};
+    }
+
+    async function runDemo() {
+
+        setButtonsDisabled(true);
+        demoHeading.text(config.demoText.heading);
+        demoText.text(config.demoText.start);
+        demoRedoButton.hide();
+        demoRedoButton.text(config.demoText.redoButton);
+        demoNextButton.text(config.demoText.nextButton);
+        demoArea.show();
+        await waitForDemoButton();
+
+        while (true) {
+            demoNextButton.prop('disabled', true);
+            demoArea.fadeOut(fadeDuration);
+            await delayMs(fadeDuration);
+            advisorBarsHeading.text(config.demoText.advisorBarsHeading);
+
+            await runGame(config.demoGame);
+
+            demoText.text(config.demoText.finish);
+            demoRedoButton.show();
+            demoNextButton.prop('disabled', false);
+            demoArea.fadeIn(fadeDuration);
+            if (await waitForDemoButton() === DEMO_BUTTON.NEXT) {
+                demoArea.fadeOut(fadeDuration);
+                await delayMs(fadeDuration);
+                break;
+            }
+        }
+
+    }
+
+    let domIdCounter = 0;
+    function uniqueDomId() {
+        return 'unique-id-' + (domIdCounter++);
+    }
+
+    function getFormQuestionObj(info) {
+        switch (info.type) {
+            case 'heading':
+                return $('<h3>').text(info.text);
+            case 'paragraph':
+                return $('<p>').text(info.text);
+            case 'radioButtons':
+                const radioFormGroup = $('<div class="form-group">');
+                radioFormGroup.append($('<label>').text(info.text));
+                for (let option of info.options) {
+                    const div = $('<div class="form-check">');
+
+                    const radioInput = $('<input type="radio">').prop('required', !!info.required);
+                    const inputId = uniqueDomId();
+                    radioInput.attr('id', inputId);
+                    radioInput.attr('name', info.text);
+                    div.append(radioInput);
+
+                    div.append(' ');
+
+                    const label = $('<label>');
+                    label.attr('for', inputId);
+                    div.append(label);
+
+                    if (typeof option === 'string') {
+                        label.text(option);
+                        radioInput.val(option);
+                    } else {
+                        label.text(option.display);
+                        radioInput.val(option.value);
+                    }
+
+                    radioFormGroup.append(div);
+                }
+                return radioFormGroup;
+            case 'textField':
+                const textFieldFormGroup = $('<div class="form-group">');
+                const textFieldId = uniqueDomId();
+                textFieldFormGroup.append($('<label>').attr('for', textFieldId).text(info.text));
+                const textField = $('<input type="text" class="form-control">').attr('id', textFieldId);
+                textField.prop('required', !!info.required);
+                textFieldFormGroup.append(textField);
+                return textFieldFormGroup;
+            case 'audio':
+                const audioText = $('<div>').text(info.text);
+                // controlsList="nodownload" hides download button on chrome
+                // noinspection HtmlUnknownAttribute
+                const audio = $('<audio controls controlsList="nodownload">').attr('src', configBaseDir + info.source);
+                return $('<div class="form-group">').append(audioText, audio);
+            case 'image':
+                const imgText = $('<div>').text(info.text);
+                // noinspection HtmlRequiredAltAttribute,RequiredAttributes
+                const img = $('<img class="img-fluid">').attr('src', configBaseDir + info.source);
+                return $('<div class="form-group">').append(imgText, img);
+            default:
+                throw new Error('unknwon form field type ' + info.type);
+        }
+    }
+
+    async function runForm(formObjInfos) {
+        formArea.fadeIn(fadeDuration);
+
+        const questionGroupForm = $('<form autocomplete="off">');
+        for (let formObjInfo of formObjInfos) {
+            const formQuestionObj = getFormQuestionObj(formObjInfo);
+            questionGroupForm.append(formQuestionObj);
+        }
+        const nextButton = $('<button type="submit" class="btn btn-secondary"></button>').text(config.formText.nextButton);
+        questionGroupForm.append($('<div class="form-group">').append(nextButton));
+        formArea.append(questionGroupForm);
+        await new Promise(res => {
+            questionGroupForm.submit(function (e) {
+                e.preventDefault();
+                res();
+            });
+        });
+        const formResponses = questionGroupForm.serializeArray();
+
+        formArea.fadeOut(fadeDuration);
+        await delayMs(fadeDuration);
+        questionGroupForm.remove();
+
+        return formResponses;
     }
 
     function sendData(submission) {
@@ -428,7 +573,7 @@ $(document).ready(async function() {
         warnOnLeave();
         await initGameDisplay();
         await runDemo();
-        const {roundResults, rewardStr} = await runGame();
+        const {roundResults, rewardStr} = await runGame(config.game);
         game.hide();
         //todo: add "sending..."
         const {submissionId} = await sendData({

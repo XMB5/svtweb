@@ -18,7 +18,8 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             title: 'svtweb',
-            template: './websrc/index.ejs'
+            template: './websrc/index.ejs',
+            favicon: './websrc/favicon.ico'
         })
     ],
     devServer: {

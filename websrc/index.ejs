@@ -15,8 +15,10 @@
     <div id="demoArea" style="display: none">
         <h3 id="demoHeading"></h3>
         <p id="demoText" class="text-with-whitespace"></p>
+        <button id="demoRedoButton" type="button" class="btn btn-secondary"></button>
         <button id="demoNextButton" type="button" class="btn btn-secondary"></button>
     </div>
+    <div id="formArea" style="display: none"></div>
     <div id="game" style="display: none">
         <div class="row align-items-center">
             <div class="col-4">
@@ -26,6 +28,7 @@
                     do not try to modify an <i> because it might change into <svg> at any time
                     instead, create a <span> or <div> around it
                     -->
+                    <span class="points"></span>
                     <span id="leftAdvice" class="icon-hidden">
                         <i class="fas fa-user"></i>
                     </span>
@@ -51,6 +54,7 @@
             </div>
             <div class="col-4">
                 <button id="rightButton" type="button" class="btn giant-button" disabled>
+                    <span class="points"></span>
                     <span id="rightAdvice" class="icon-hidden">
                         <i class="fas fa-user"></i>
                     </span>
