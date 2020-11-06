@@ -225,18 +225,18 @@ class SubmissionSaver {
     static objToCSV(submissionObj) {
         const summaryRows = [
             ['summary'],
-            ['reward'],
-            [submissionObj.reward]
+            ['reward', 'points'],
+            [submissionObj.reward, submissionObj.points]
         ];
         const summaryCsv = SubmissionSaver.convertToCsv(summaryRows);
 
         const eventRows = [
             ['round results'],
-            ['correct color', 'advice correct', 'yellow on left', 'color chosen', 'correct color chosen', 'decision milliseconds']
+            ['correct color', 'advice correct', 'yellow points', 'blue points', 'yellow on left', 'color chosen', 'correct color chosen', 'decision milliseconds', 'form responses']
         ];
         submissionObj.roundResults.forEach(roundResult => {
             eventRows.push([roundResult.round.correctColor, roundResult.round.adviceCorrect, roundResult.round.yellowOnLeft,
-                roundResult.colorChosen, roundResult.correct , roundResult.decisionMs]);
+                roundResult.colorChosen, roundResult.correct , roundResult.decisionMs, roundResult.formResponses]);
         });
         const eventCsv = SubmissionSaver.convertToCsv(eventRows);
 

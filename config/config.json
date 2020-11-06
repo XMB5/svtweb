@@ -18,19 +18,19 @@
   "rewards": [
     {
       "text": "$1",
-      "startPercent": 55,
-      "endPercent": 65,
+      "startPercent": 50,
+      "endPercent": 75,
       "color": "green"
     },
     {
       "text": "$2",
-      "startPercent": 65,
-      "endPercent": 80,
+      "startPercent": 75,
+      "endPercent": 95,
       "color": "hsla(40, 100%, 50%, 1)"
     },
     {
       "text": "$3",
-      "startPercent": 80,
+      "startPercent": 95,
       "endPercent": 100,
       "color": "magenta"
     }
@@ -180,8 +180,2051 @@
           {
             "type": "image",
             "source": "640px-Pieter_Brueghel_the_Elder_-_The_Dutch_Proverbs_-_Google_Art_Project.jpg"
+          },
+          {
+            "type": "textField",
+            "text": "what do you see?",
+            "name": "seen",
+            "required": true
           }
         ]
+      }
+    ]
+  },
+  "game": {
+    "totalPoints": 15000,
+    "incorrectPenalty": 0,
+    "hidePointsOnButtons": false,
+    "rounds": [
+      {
+        "yellowPoints": 49,
+        "bluePoints": 73,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 36,
+        "bluePoints": 39,
+        "yellowCorrect": true,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 21,
+        "bluePoints": 16,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 23,
+        "bluePoints": 14,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 76,
+        "bluePoints": 90,
+        "yellowCorrect": true,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 40,
+        "bluePoints": 35,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 82,
+        "bluePoints": 16,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 53,
+        "bluePoints": 87,
+        "yellowCorrect": true,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 10,
+        "bluePoints": 80,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 5,
+        "bluePoints": 73,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 94,
+        "bluePoints": 49,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 61,
+        "bluePoints": 40,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 99,
+        "bluePoints": 86,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 48,
+        "bluePoints": 18,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 98,
+        "bluePoints": 93,
+        "yellowCorrect": true,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 57,
+        "bluePoints": 82,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 23,
+        "bluePoints": 69,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 12,
+        "bluePoints": 47,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 13,
+        "bluePoints": 89,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 74,
+        "bluePoints": 98,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 14,
+        "bluePoints": 3,
+        "yellowCorrect": true,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 19,
+        "bluePoints": 82,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 40,
+        "bluePoints": 66,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 34,
+        "bluePoints": 45,
+        "yellowCorrect": true,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 46,
+        "bluePoints": 57,
+        "yellowCorrect": true,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 10,
+        "bluePoints": 80,
+        "yellowCorrect": true,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 17,
+        "bluePoints": 63,
+        "yellowCorrect": true,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 64,
+        "bluePoints": 79,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 79,
+        "bluePoints": 6,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 37,
+        "bluePoints": 39,
+        "yellowCorrect": true,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 31,
+        "bluePoints": 42,
+        "yellowCorrect": true,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 90,
+        "bluePoints": 66,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 72,
+        "bluePoints": 63,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 41,
+        "bluePoints": 89,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 19,
+        "bluePoints": 61,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 5,
+        "bluePoints": 62,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 94,
+        "bluePoints": 88,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 42,
+        "bluePoints": 77,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 60,
+        "bluePoints": 75,
+        "yellowCorrect": true,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 51,
+        "bluePoints": 12,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 90,
+        "bluePoints": 20,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 19,
+        "bluePoints": 12,
+        "yellowCorrect": true,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 9,
+        "bluePoints": 84,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 6,
+        "bluePoints": 38,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 5,
+        "bluePoints": 45,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 68,
+        "bluePoints": 7,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 48,
+        "bluePoints": 3,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 93,
+        "bluePoints": 96,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 41,
+        "bluePoints": 16,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 87,
+        "bluePoints": 93,
+        "yellowCorrect": true,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 71,
+        "bluePoints": 24,
+        "yellowCorrect": true,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 94,
+        "bluePoints": 8,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 48,
+        "bluePoints": 67,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 43,
+        "bluePoints": 8,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 51,
+        "bluePoints": 6,
+        "yellowCorrect": true,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 52,
+        "bluePoints": 70,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 47,
+        "bluePoints": 1,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 96,
+        "bluePoints": 16,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 86,
+        "bluePoints": 27,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 31,
+        "bluePoints": 32,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 72,
+        "bluePoints": 71,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 85,
+        "bluePoints": 57,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 31,
+        "bluePoints": 52,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 16,
+        "bluePoints": 58,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 8,
+        "bluePoints": 1,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 75,
+        "bluePoints": 35,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 53,
+        "bluePoints": 54,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 45,
+        "bluePoints": 9,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 79,
+        "bluePoints": 27,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 22,
+        "bluePoints": 59,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 31,
+        "bluePoints": 1,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 73,
+        "bluePoints": 3,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 46,
+        "bluePoints": 38,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 41,
+        "bluePoints": 17,
+        "yellowCorrect": true,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 25,
+        "bluePoints": 31,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 58,
+        "bluePoints": 27,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 81,
+        "bluePoints": 31,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 5,
+        "bluePoints": 58,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 15,
+        "bluePoints": 54,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 49,
+        "bluePoints": 79,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 89,
+        "bluePoints": 37,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 31,
+        "bluePoints": 75,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 28,
+        "bluePoints": 65,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 6,
+        "bluePoints": 55,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 6,
+        "bluePoints": 85,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 58,
+        "bluePoints": 43,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 84,
+        "bluePoints": 57,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 35,
+        "bluePoints": 77,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 35,
+        "bluePoints": 54,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 4,
+        "bluePoints": 98,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 39,
+        "bluePoints": 11,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 87,
+        "bluePoints": 30,
+        "yellowCorrect": true,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 3,
+        "bluePoints": 38,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 17,
+        "bluePoints": 47,
+        "yellowCorrect": true,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 83,
+        "bluePoints": 22,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 1,
+        "bluePoints": 32,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 47,
+        "bluePoints": 23,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 83,
+        "bluePoints": 2,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 90,
+        "bluePoints": 2,
+        "yellowCorrect": true,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 51,
+        "bluePoints": 78,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 84,
+        "bluePoints": 2,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 57,
+        "bluePoints": 90,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 77,
+        "bluePoints": 20,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 31,
+        "bluePoints": 61,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 11,
+        "bluePoints": 52,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 69,
+        "bluePoints": 71,
+        "yellowCorrect": true,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 74,
+        "bluePoints": 35,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 40,
+        "bluePoints": 76,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 35,
+        "bluePoints": 51,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 5,
+        "bluePoints": 77,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 37,
+        "bluePoints": 36,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 37,
+        "bluePoints": 93,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 28,
+        "bluePoints": 90,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 91,
+        "bluePoints": 55,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 66,
+        "bluePoints": 52,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 43,
+        "bluePoints": 18,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 63,
+        "bluePoints": 61,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 60,
+        "bluePoints": 73,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 98,
+        "bluePoints": 88,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 76,
+        "bluePoints": 47,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 72,
+        "bluePoints": 75,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 88,
+        "bluePoints": 18,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 1,
+        "bluePoints": 2,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 57,
+        "bluePoints": 13,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 97,
+        "bluePoints": 86,
+        "yellowCorrect": true,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 53,
+        "bluePoints": 80,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 6,
+        "bluePoints": 19,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 56,
+        "bluePoints": 17,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 23,
+        "bluePoints": 68,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 44,
+        "bluePoints": 40,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 10,
+        "bluePoints": 94,
+        "yellowCorrect": true,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 13,
+        "bluePoints": 48,
+        "yellowCorrect": true,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 80,
+        "bluePoints": 40,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 25,
+        "bluePoints": 19,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 50,
+        "bluePoints": 34,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 52,
+        "bluePoints": 44,
+        "yellowCorrect": true,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 2,
+        "bluePoints": 14,
+        "yellowCorrect": true,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 88,
+        "bluePoints": 98,
+        "yellowCorrect": true,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 46,
+        "bluePoints": 44,
+        "yellowCorrect": true,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 98,
+        "bluePoints": 80,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 57,
+        "bluePoints": 82,
+        "yellowCorrect": true,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 87,
+        "bluePoints": 23,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 24,
+        "bluePoints": 64,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 12,
+        "bluePoints": 26,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 15,
+        "bluePoints": 12,
+        "yellowCorrect": true,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 6,
+        "bluePoints": 41,
+        "yellowCorrect": true,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 20,
+        "bluePoints": 7,
+        "yellowCorrect": true,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 87,
+        "bluePoints": 11,
+        "yellowCorrect": true,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 77,
+        "bluePoints": 53,
+        "yellowCorrect": true,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 93,
+        "bluePoints": 21,
+        "yellowCorrect": true,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 8,
+        "bluePoints": 3,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 7,
+        "bluePoints": 99,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 98,
+        "bluePoints": 74,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 52,
+        "bluePoints": 98,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 79,
+        "bluePoints": 95,
+        "yellowCorrect": true,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 31,
+        "bluePoints": 47,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 12,
+        "bluePoints": 99,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 49,
+        "bluePoints": 85,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 42,
+        "bluePoints": 31,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 92,
+        "bluePoints": 95,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 16,
+        "bluePoints": 11,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 20,
+        "bluePoints": 12,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 15,
+        "bluePoints": 1,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 96,
+        "bluePoints": 30,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 75,
+        "bluePoints": 37,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 21,
+        "bluePoints": 12,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 67,
+        "bluePoints": 71,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 22,
+        "bluePoints": 96,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 45,
+        "bluePoints": 32,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 94,
+        "bluePoints": 79,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 58,
+        "bluePoints": 67,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 15,
+        "bluePoints": 11,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 63,
+        "bluePoints": 72,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 18,
+        "bluePoints": 88,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 8,
+        "bluePoints": 1,
+        "yellowCorrect": true,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 21,
+        "bluePoints": 10,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 53,
+        "bluePoints": 37,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 67,
+        "bluePoints": 91,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 46,
+        "bluePoints": 100,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 22,
+        "bluePoints": 17,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 22,
+        "bluePoints": 17,
+        "yellowCorrect": true,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 89,
+        "bluePoints": 10,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 30,
+        "bluePoints": 61,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 25,
+        "bluePoints": 41,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 90,
+        "bluePoints": 26,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 12,
+        "bluePoints": 20,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 67,
+        "bluePoints": 19,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 33,
+        "bluePoints": 88,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 33,
+        "bluePoints": 63,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 83,
+        "bluePoints": 62,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 55,
+        "bluePoints": 66,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 64,
+        "bluePoints": 18,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 85,
+        "bluePoints": 63,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 59,
+        "bluePoints": 88,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 33,
+        "bluePoints": 18,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 21,
+        "bluePoints": 65,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 63,
+        "bluePoints": 88,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 26,
+        "bluePoints": 25,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 98,
+        "bluePoints": 59,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 16,
+        "bluePoints": 49,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 79,
+        "bluePoints": 84,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 92,
+        "bluePoints": 5,
+        "yellowCorrect": true,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 47,
+        "bluePoints": 74,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 61,
+        "bluePoints": 55,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 41,
+        "bluePoints": 43,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 97,
+        "bluePoints": 78,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 65,
+        "bluePoints": 40,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 77,
+        "bluePoints": 36,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 42,
+        "bluePoints": 66,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 15,
+        "bluePoints": 39,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 49,
+        "bluePoints": 18,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 85,
+        "bluePoints": 5,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 68,
+        "bluePoints": 25,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 45,
+        "bluePoints": 90,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 50,
+        "bluePoints": 98,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 16,
+        "bluePoints": 48,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 70,
+        "bluePoints": 14,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 20,
+        "bluePoints": 51,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 68,
+        "bluePoints": 99,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 12,
+        "bluePoints": 76,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 60,
+        "bluePoints": 97,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 77,
+        "bluePoints": 93,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 58,
+        "bluePoints": 24,
+        "yellowCorrect": true,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 68,
+        "bluePoints": 10,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 43,
+        "bluePoints": 41,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 28,
+        "bluePoints": 13,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 98,
+        "bluePoints": 75,
+        "yellowCorrect": true,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 96,
+        "bluePoints": 35,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 73,
+        "bluePoints": 45,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 72,
+        "bluePoints": 20,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 64,
+        "bluePoints": 74,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 9,
+        "bluePoints": 20,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 53,
+        "bluePoints": 77,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 85,
+        "bluePoints": 24,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 21,
+        "bluePoints": 61,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 83,
+        "bluePoints": 35,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 21,
+        "bluePoints": 72,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 48,
+        "bluePoints": 12,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 30,
+        "bluePoints": 18,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 34,
+        "bluePoints": 19,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 93,
+        "bluePoints": 36,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 3,
+        "bluePoints": 40,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 72,
+        "bluePoints": 23,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 38,
+        "bluePoints": 67,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 59,
+        "bluePoints": 96,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 33,
+        "bluePoints": 43,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 86,
+        "bluePoints": 80,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 85,
+        "bluePoints": 80,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 55,
+        "bluePoints": 100,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 4,
+        "bluePoints": 21,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 53,
+        "bluePoints": 33,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 83,
+        "bluePoints": 76,
+        "yellowCorrect": true,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 57,
+        "bluePoints": 76,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 22,
+        "bluePoints": 96,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 32,
+        "bluePoints": 57,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 7,
+        "bluePoints": 61,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 37,
+        "bluePoints": 37,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 26,
+        "bluePoints": 34,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 26,
+        "bluePoints": 60,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 47,
+        "bluePoints": 53,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 9,
+        "bluePoints": 48,
+        "yellowCorrect": true,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 6,
+        "bluePoints": 66,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 82,
+        "bluePoints": 4,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 7,
+        "bluePoints": 19,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 30,
+        "bluePoints": 93,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 79,
+        "bluePoints": 58,
+        "yellowCorrect": true,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 46,
+        "bluePoints": 2,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 91,
+        "bluePoints": 29,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 55,
+        "bluePoints": 5,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 43,
+        "bluePoints": 79,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 40,
+        "bluePoints": 71,
+        "yellowCorrect": true,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 6,
+        "bluePoints": 54,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 72,
+        "bluePoints": 59,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 72,
+        "bluePoints": 21,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 74,
+        "bluePoints": 41,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 69,
+        "bluePoints": 52,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 26,
+        "bluePoints": 84,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 1,
+        "bluePoints": 66,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 35,
+        "bluePoints": 48,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 90,
+        "bluePoints": 85,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 74,
+        "bluePoints": 48,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 29,
+        "bluePoints": 27,
+        "yellowCorrect": true,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 18,
+        "bluePoints": 73,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 16,
+        "bluePoints": 97,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 8,
+        "bluePoints": 38,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 44,
+        "bluePoints": 24,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 27,
+        "bluePoints": 24,
+        "yellowCorrect": false,
+        "adviceCorrect": true,
+        "yellowOnLeft": false
+      },
+      {
+        "yellowPoints": 24,
+        "bluePoints": 2,
+        "yellowCorrect": false,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 15,
+        "bluePoints": 98,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": true
+      },
+      {
+        "yellowPoints": 47,
+        "bluePoints": 80,
+        "yellowCorrect": true,
+        "adviceCorrect": false,
+        "yellowOnLeft": false
       }
     ]
   }

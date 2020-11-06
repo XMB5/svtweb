@@ -407,7 +407,7 @@ $(document).ready(async function() {
 
         leftButton.add(rightButton).find('.points').text('');
 
-        return {roundResults, rewardStr};
+        return {roundResults, rewardStr, points};
     }
 
     async function runDemo() {
@@ -427,7 +427,7 @@ $(document).ready(async function() {
             await delayMs(fadeDuration);
             advisorBarsHeading.text(config.demoText.advisorBarsHeading);
 
-            await runGame(config.demoGame);
+            console.log(await runGame(config.demoGame));
 
             demoText.text(config.demoText.finish);
             demoRedoButton.show();
@@ -460,6 +460,7 @@ $(document).ready(async function() {
                     const div = $('<div class="form-check">');
 
                     const radioInput = $('<input type="radio">').prop('required', !!info.required);
+                    radioInput.prop('name', info.name);
                     const inputId = uniqueDomId();
                     radioInput.attr('id', inputId);
                     radioInput.attr('name', info.text);
@@ -487,6 +488,7 @@ $(document).ready(async function() {
                 const textFieldId = uniqueDomId();
                 textFieldFormGroup.append($('<label>').attr('for', textFieldId).text(info.text));
                 const textField = $('<input type="text" class="form-control">').attr('id', textFieldId);
+                textField.prop('name', info.name);
                 textField.prop('required', !!info.required);
                 textFieldFormGroup.append(textField);
                 return textFieldFormGroup;
@@ -523,7 +525,11 @@ $(document).ready(async function() {
                 res();
             });
         });
-        const formResponses = questionGroupForm.serializeArray();
+        const formResponsesArr = questionGroupForm.serializeArray();
+        const formResponses = {};
+        for (let {name, value} of formResponsesArr) {
+            formResponses[name] = value;
+        }
 
         formArea.fadeOut(fadeDuration);
         await delayMs(fadeDuration);
@@ -573,12 +579,13 @@ $(document).ready(async function() {
         warnOnLeave();
         await initGameDisplay();
         await runDemo();
-        const {roundResults, rewardStr} = await runGame(config.game);
+        const {roundResults, rewardStr, points} = await runGame(config.game);
         game.hide();
         //todo: add "sending..."
         const {submissionId} = await sendData({
             roundResults,
             reward: rewardStr,
+            points,
             searchParams: window.location.search
         });
         showEndScreen(rewardStr, submissionId);
