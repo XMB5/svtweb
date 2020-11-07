@@ -162,9 +162,8 @@ class SubmissionSaver {
             throw new Error('missing reward');
         }
 
-        const searchParams = new URLSearchParams(submissionObj.searchParams);
-        const recordId = searchParams.get('recordId');
-        const eventName = searchParams.get('eventName');
+        const recordId = submissionObj['recordId'];
+        const eventName = submissionObj['eventName'];
 
         let submissionId = 'submission-';
         if (recordId) {
@@ -232,11 +231,16 @@ class SubmissionSaver {
 
         const eventRows = [
             ['round results'],
-            ['correct color', 'advice correct', 'yellow points', 'blue points', 'yellow on left', 'color chosen', 'correct color chosen', 'decision milliseconds', 'form responses']
+            ['yellow correct', 'advice correct', 'yellow points', 'blue points', 'yellow on left', 'color chosen', 'correct color chosen', 'decision milliseconds', 'form responses']
         ];
         submissionObj.roundResults.forEach(roundResult => {
-            eventRows.push([roundResult.round.correctColor, roundResult.round.adviceCorrect, roundResult.round.yellowOnLeft,
-                roundResult.colorChosen, roundResult.correct , roundResult.decisionMs, roundResult.formResponses]);
+            eventRows.push([
+                roundResult.round.yellowCorrect, roundResult.round.adviceCorrect,
+                roundResult.round.yellowPoints, roundResult.round.bluePoints,
+                roundResult.round.yellowOnLeft,
+                roundResult.colorChosen, roundResult.correct, roundResult.decisionMs,
+                roundResult.formResponses || ''
+            ]);
         });
         const eventCsv = SubmissionSaver.convertToCsv(eventRows);
 

@@ -575,6 +575,8 @@ $(document).ready(async function() {
 
     async function main() {
 
+        const params = new URLSearchParams(window.location.search);
+
         await loadConfig('/api/config');
         warnOnLeave();
         await initGameDisplay();
@@ -586,9 +588,15 @@ $(document).ready(async function() {
             roundResults,
             reward: rewardStr,
             points,
-            searchParams: window.location.search
+            eventName: params.get('eventName'),
+            recordId: params.get('recordId')
         });
-        showEndScreen(rewardStr, submissionId);
+        const nextUrl = params.get('nextUrl');
+        if (nextUrl) {
+            window.location = nextUrl;
+        } else {
+            showEndScreen(rewardStr, submissionId);
+        }
 
     }
 

@@ -195,7 +195,22 @@
     "totalPoints": 15000,
     "incorrectPenalty": 0,
     "hidePointsOnButtons": false,
-    "rounds": [
+    "rounds": [{
+      "yellowPoints": 49,
+      "bluePoints": 73,
+      "yellowCorrect": false,
+      "adviceCorrect": false,
+      "yellowOnLeft": false,
+      "form": [
+        {
+          "type": "textField",
+          "text": "cool",
+          "name": "cool",
+          "required": true
+        }
+      ]
+    }],
+    "roundsREAL": [
       {
         "yellowPoints": 49,
         "bluePoints": 73,
