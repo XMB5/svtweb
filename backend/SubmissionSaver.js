@@ -231,7 +231,7 @@ class SubmissionSaver {
 
         const eventRows = [
             ['round results'],
-            ['yellow correct', 'advice correct', 'yellow points', 'blue points', 'yellow on left', 'color chosen', 'correct color chosen', 'decision milliseconds', 'form responses']
+            ['yellow correct', 'advice correct', 'yellow points', 'blue points', 'yellow on left', 'color chosen (0=yellow, 1=blue)', 'correct color chosen', 'decision milliseconds', 'form responses']
         ];
         submissionObj.roundResults.forEach(roundResult => {
             eventRows.push([
