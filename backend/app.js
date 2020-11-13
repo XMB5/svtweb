@@ -9,6 +9,26 @@ const {promisify} = require('util');
 
 const readFilePromise = promisify(fs.readFile);
 
+// self-signed secp256r1 tls key and cert
+const TLS_KEY = `-----BEGIN EC PRIVATE KEY-----
+MHcCAQEEIMj9M0a9Sbloyeh/jPlskYTzFQ8sIPoUFW1xQgpueAB6oAoGCCqGSM49
+AwEHoUQDQgAEdmpfY/zl/x8glGpU+7liEdQRV61DvD/M+HrKkT9T3gWpelUhJekt
+zfkzGkRwy7m7ZI79kjiCCySPfleToOMCcA==
+-----END EC PRIVATE KEY-----`;
+const TLS_CERT = `-----BEGIN CERTIFICATE-----
+MIIB4TCCAYegAwIBAgIUYxJgToV6d51keXKlihUZ/UP5kVgwCgYIKoZIzj0EAwIw
+RTELMAkGA1UEBhMCQVUxEzARBgNVBAgMClNvbWUtU3RhdGUxITAfBgNVBAoMGElu
+dGVybmV0IFdpZGdpdHMgUHR5IEx0ZDAgFw0yMDExMTMxOTI2MzBaGA8yMTIwMTAy
+MDE5MjYzMFowRTELMAkGA1UEBhMCQVUxEzARBgNVBAgMClNvbWUtU3RhdGUxITAf
+BgNVBAoMGEludGVybmV0IFdpZGdpdHMgUHR5IEx0ZDBZMBMGByqGSM49AgEGCCqG
+SM49AwEHA0IABHZqX2P85f8fIJRqVPu5YhHUEVetQ7w/zPh6ypE/U94FqXpVISXp
+Lc35MxpEcMu5u2SO/ZI4ggskj35Xk6DjAnCjUzBRMB0GA1UdDgQWBBSS57Y1GRW9
+UvuXbF1MRrQ9M4Ex9TAfBgNVHSMEGDAWgBSS57Y1GRW9UvuXbF1MRrQ9M4Ex9TAP
+BgNVHRMBAf8EBTADAQH/MAoGCCqGSM49BAMCA0gAMEUCIAOSbLo2JWEUwT/rD8BI
+9iuTxyLNuMA/L64krQdzj5ixAiEA97VOcnHJCq8zFkngvrkP7lEfZlPFUxv82bvC
+iH9GCQU=
+-----END CERTIFICATE-----`;
+
 const init = async () => {
 
     const configDir = process.env.SVTWEB_CONFIG_DIR;
@@ -58,10 +78,21 @@ const init = async () => {
     const port = parseInt(process.env.SVTWEB_PORT) || 9090;
     const host = process.env.SVTWEB_HOST || 'localhost';
 
+    let tls;
+    if (process.env.SVTWEB_HTTPS === '1') {
+        tls = {
+            key: TLS_KEY,
+            cert: TLS_CERT
+        };
+    } else {
+        tls = false;
+    }
+
     const server = Hapi.server({
         port,
         host,
-        debug: false
+        debug: false,
+        tls
     });
 
     await server.register(Inert);
