@@ -17,24 +17,31 @@
   "noReward": "$0",
   "rewards": [
     {
-      "text": "$10",
+      "text": "$5",
       "startPercent": 50,
       "endPercent": 75,
       "color": "green"
     },
     {
-      "text": "$20",
+      "text": "$10",
       "startPercent": 75,
       "endPercent": 95,
       "color": "hsla(40, 100%, 50%, 1)"
     },
     {
-      "text": "$30",
+      "text": "$15",
       "startPercent": 95,
       "endPercent": 100,
       "color": "magenta"
     }
   ],
+  "advice": {
+    "type": "face",
+    "images": {
+      "left": "smirking-face_1f60f.flop.png",
+      "right": "smirking-face_1f60f.png"
+    }
+  },
   "delays": {
     "waitForAdvice": {
       "min": 1000,
@@ -43,196 +50,6 @@
     "waitForCorrect": 500,
     "startNextRound": 3000,
     "popoverExtra": 3000
-  },
-  "demoGame": {
-    "totalPoints": 800,
-    "incorrectPenalty": 0,
-    "hidePointsOnButtons": false,
-    "advisorBars": [
-      [
-        {
-          "text": "$20",
-          "startPercent": 30,
-          "endPercent": 50,
-          "color": "hsla(40, 100%, 50%, 1)"
-        },
-        {
-          "text": "$10",
-          "startPercent": 70,
-          "endPercent": 85,
-          "color": "green"
-        }
-      ],
-      [
-        {
-          "text": "$10",
-          "startPercent": 15,
-          "endPercent": 55,
-          "color": "green"
-        },
-        {
-          "text": "$20",
-          "startPercent": 60,
-          "endPercent": 73,
-          "color": "hsla(40, 100%, 50%, 1)"
-        }
-      ],
-      [
-        {
-          "text": "$10",
-          "startPercent": 78,
-          "endPercent": 100,
-          "color": "green"
-        },
-        {
-          "text": "$20",
-          "startPercent": 24,
-          "endPercent": 37,
-          "color": "hsla(40, 100%, 50%, 1)"
-        }
-      ]
-    ],
-    "rounds": [
-      {
-        "yellowOnLeft": true,
-        "yellowCorrect": true,
-        "adviceCorrect": true,
-        "yellowPoints": 50,
-        "bluePoints": 50,
-        "hideAdvice": true,
-        "hidePointsOnButtons": true,
-        "popovers": {
-          "yellowButton": "Try this button",
-          "blueButton": "Or click this button"
-        }
-      },
-      {
-        "yellowOnLeft": false,
-        "yellowCorrect": true,
-        "adviceCorrect": true,
-        "yellowPoints": 50,
-        "bluePoints": 50,
-        "hideAdvice": true,
-        "hidePointsOnButtons": true,
-        "popovers": {
-          "yellowButton": "Or you can guess yellow",
-          "blueButton": "Each round, you can guess blue",
-          "correct": "The correct answer will be displayed in the center after you make your choice.",
-          "incorrect": "The correct answer will be displayed in the center after you make your choice."
-        }
-      },
-      {
-        "yellowOnLeft": true,
-        "yellowCorrect": true,
-        "adviceCorrect": true,
-        "yellowPoints": 50,
-        "bluePoints": 50,
-        "hideAdvice": true,
-        "hidePointsOnButtons": true,
-        "popovers": {
-          "yellowButton": "Sometimes, yellow will be correct more often"
-        }
-      },
-      {
-        "yellowOnLeft": true,
-        "yellowCorrect": false,
-        "adviceCorrect": true,
-        "yellowPoints": 50,
-        "bluePoints": 50,
-        "hideAdvice": true,
-        "hidePointsOnButtons": true,
-        "popovers": {
-          "blueButton": "And sometimes blue will be correct more often",
-          "correct": "By considering which color has been correct more often in the past, you can build a feeling of which color is more likely to be correct in the future.",
-          "incorrect": "By considering which color has been correct more often in the past, you can build a feeling of which color is more likely to be correct in the future."
-        }
-      },
-      {
-        "yellowOnLeft": false,
-        "yellowCorrect": true,
-        "adviceCorrect": true,
-        "yellowPoints": 47,
-        "bluePoints": 63,
-        "hideAdvice": true,
-        "popovers": {
-          "yellowButton": "Each box is worth 0-100 points",
-          "pointsBar": "Each time you answer correctly, your points increase."
-        }
-      },
-      {
-        "yellowOnLeft": false,
-        "yellowCorrect": false,
-        "adviceCorrect": true,
-        "yellowPoints": 74,
-        "bluePoints": 13,
-        "popovers": {
-          "advice": "You will also get advice, represented by the figure",
-          "correct": "The advice was right",
-          "incorrect": "The advice was right"
-        }
-      },
-      {
-        "yellowOnLeft": false,
-        "yellowCorrect": true,
-        "adviceCorrect": true,
-        "yellowPoints": 25,
-        "bluePoints": 78,
-        "showAdvisorViews": false,
-        "popovers": {
-          "advice": "Your advisor recommends yellow for 25 points",
-          "correct": "Correct! You earned 25 points",
-          "incorrect": "Incorrect!"
-        }
-      },
-      {
-        "yellowOnLeft": false,
-        "yellowCorrect": false,
-        "adviceCorrect": false,
-        "yellowPoints": 63,
-        "bluePoints": 57
-      },
-      {
-        "yellowOnLeft": true,
-        "yellowCorrect": false,
-        "adviceCorrect": false,
-        "yellowPoints": 9,
-        "bluePoints": 70,
-        "showAdvisorViews": true,
-        "popovers": {
-          "advisorBar": "Your advisor is trying to get you to score a certain amount of points. These goals are randomly generated each game."
-        }
-      },
-      {
-        "yellowOnLeft": false,
-        "yellowCorrect": true,
-        "adviceCorrect": true,
-        "yellowPoints": 81,
-        "bluePoints": 45,
-        "popovers": {
-          "advisorBar": "So, depending on their goals, the advisor might try to help you or to hurt you."
-        }
-      },
-      {
-        "yellowOnLeft": false,
-        "yellowCorrect": false,
-        "adviceCorrect": true,
-        "yellowPoints": 23,
-        "bluePoints": 52,
-        "popovers": {
-          "advisorBar": "In the game, you will not be able to see your advisor's goals. Instead, you will have to guess if their advice is good or bad."
-        }
-      },
-      {
-        "yellowOnLeft": true,
-        "yellowCorrect": false,
-        "adviceCorrect": true,
-        "yellowPoints": 23,
-        "bluePoints": 29,
-        "popovers": {
-          "advisorBar": "Remember: Color, Points, and Advice"
-        }
-      }
-    ]
   },
   "game": {
     "totalPoints": 16000,

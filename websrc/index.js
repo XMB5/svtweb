@@ -65,6 +65,9 @@ $(document).ready(async function() {
     const advisorBarsHeading = $('#advisorBarsHeading');
 
     const endScreen = $('#endScreen');
+
+    const leftAdviceFace = $('#leftAdviceFace');
+    const rightAdviceFace = $('#rightAdviceFace');
     
     const fadeDuration = 400;
 
@@ -84,13 +87,23 @@ $(document).ready(async function() {
     function hideAdvice() {
         leftAdvice.addClass(ICON_HIDDEN_CLASS);
         rightAdvice.addClass(ICON_HIDDEN_CLASS);
+        leftAdviceFace.addClass(ICON_HIDDEN_CLASS);
+        rightAdviceFace.addClass(ICON_HIDDEN_CLASS);
     }
 
     function showAdviceForSide(side) {
-        if (side === SIDE.LEFT) {
-            leftAdvice.removeClass(ICON_HIDDEN_CLASS);
+        if (config.advice.type === 'face') {
+            if (side === SIDE.LEFT) {
+                leftAdviceFace.removeClass(ICON_HIDDEN_CLASS);
+            } else {
+                rightAdviceFace.removeClass(ICON_HIDDEN_CLASS);
+            }
         } else {
-            rightAdvice.removeClass(ICON_HIDDEN_CLASS);
+            if (side === SIDE.LEFT) {
+                leftAdvice.removeClass(ICON_HIDDEN_CLASS);
+            } else {
+                rightAdvice.removeClass(ICON_HIDDEN_CLASS);
+            }
         }
     }
 
@@ -102,7 +115,9 @@ $(document).ready(async function() {
     function waitForDecision() {
         return new Promise(res => {
             setButtonsDisabled(false);
-            makeDecision.show();
+            if (config.advice.type !== 'face') {
+                makeDecision.show();
+            }
 
             function handler(event) {
                 makeDecision.hide();
@@ -287,7 +302,7 @@ $(document).ready(async function() {
             }
             let adviceIcon;
             if (popovers.advice) {
-                adviceIcon = adviceSide === SIDE.LEFT ? leftAdvice : rightAdvice;
+                adviceIcon = config.advice.type === 'face' ? (adviceSide === SIDE.LEFT ? leftAdviceFace : rightAdviceFace) : (adviceSide === SIDE.LEFT ? leftAdvice : rightAdvice);
                 showPopover(adviceIcon, popovers.advice);
             }
             const adviceShownTime = performance.now();
@@ -311,6 +326,9 @@ $(document).ready(async function() {
                 selectedButtonEl.blur();
             }
             setButtonsDisabled(true);
+            if (config.advice.type === 'face') {
+                hideAdvice();
+            }
             await loadCorrectAnimation();
 
             showCorrectColor(correctColor);
@@ -558,6 +576,10 @@ $(document).ready(async function() {
         config = await $.ajax(configBaseDir + 'config.json', {
             dataType: 'json'
         });
+        if (config.advice.type === 'face') {
+            leftAdviceFace.prop('src', configBaseDir + config.advice.images.left);
+            rightAdviceFace.prop('src', configBaseDir + config.advice.images.right);
+        }
     }
 
     function warnOnLeave() {
@@ -577,25 +599,34 @@ $(document).ready(async function() {
 
         const params = new URLSearchParams(window.location.search);
 
-        await loadConfig('/api/config');
+        const configName = params.get('configName');
+        await loadConfig('/api/config/' + (configName || ''));
         warnOnLeave();
         await initGameDisplay();
-        await runDemo();
-        const {roundResults, rewardStr, points} = await runGame(config.game);
+        if (config.demoGame) {
+            await runDemo();
+        }
+        let gameData = null;
+        if (config.game) {
+            gameData = await runGame(config.game);
+        }
         game.hide();
-        //todo: add "sending..."
-        const {submissionId} = await sendData({
-            roundResults,
-            reward: rewardStr,
-            points,
-            eventName: params.get('eventName'),
-            recordId: params.get('recordId')
-        });
+        let submissionId = null;
+        if (gameData) {
+            const sendRes = await sendData({
+                roundResults: gameData.roundResults,
+                reward: gameData.rewardStr,
+                points: gameData.points,
+                eventName: params.get('eventName'),
+                recordId: params.get('recordId')
+            });
+            submissionId = sendRes.submissionId;
+        }
         const nextUrl = params.get('nextUrl');
         if (nextUrl) {
             window.location = nextUrl;
         } else {
-            showEndScreen(rewardStr, submissionId);
+            showEndScreen(gameData ? gameData.rewardStr : 'none', submissionId || 'none');
         }
 
     }
