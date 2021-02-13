@@ -92,7 +92,10 @@ const init = async () => {
         port,
         host,
         debug: false,
-        tls
+        tls,
+        state: {
+            strictHeader: false
+        }
     });
 
     await server.register(Inert);

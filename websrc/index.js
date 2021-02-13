@@ -582,10 +582,17 @@ $(document).ready(async function() {
         }
     }
 
+    function onBeforeUnloadCb(e) {
+        e.preventDefault();
+        e.returnValue = '';
+    }
+
     function warnOnLeave() {
-        $(window).on('beforeunload', () => {
-            return 'data will be lost'; //browser will not show message to user
-        });
+        window.addEventListener('beforeunload', onBeforeUnloadCb);
+    }
+
+    function dontWarnOnLeave() {
+        window.removeEventListener('beforeunload', onBeforeUnloadCb);
     }
 
     function showEndScreen(rewardStr, submissionId) {
@@ -622,6 +629,7 @@ $(document).ready(async function() {
             });
             submissionId = sendRes.submissionId;
         }
+        dontWarnOnLeave();
         const nextUrl = params.get('nextUrl');
         if (nextUrl) {
             window.location = nextUrl;
