@@ -35,6 +35,7 @@
       "color": "magenta"
     }
   ],
+  "currentPointsColor": "black",
   "advice": {
     "type": "face",
     "images": {

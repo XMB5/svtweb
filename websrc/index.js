@@ -213,9 +213,14 @@ $(document).ready(async function() {
         el.popover('show');
     }
 
+    function setCurrentPointsColor(progressBar) {
+        progressBar.css('background-color', config.currentPointsColor || '');
+    }
+
     async function initGameDisplay() {
         leftButton.addClass(BTN_COLORS.YELLOW);
         rightButton.addClass(BTN_COLORS.BLUE);
+        setCurrentPointsColor(currentPoints);
         for (let reward of config.rewards) {
             const rangeIndicator = generateRangeIndicator(reward);
             pointsBar.append(rangeIndicator);
@@ -240,6 +245,7 @@ $(document).ready(async function() {
         for (let barInfo of gameConfig.advisorBars || []) {
             const advisorBarWrapper = $('<div class="progress mt-3 position-relative progress-bar-wide">');
             const advisorBar = $('<div class="progress-bar above-threshold" style="width: 0">');
+            setCurrentPointsColor(advisorBar);
             advisorBarWrapper.append(advisorBar);
             for (let info of barInfo) {
                 const rangeIndicator = generateRangeIndicator(info);
