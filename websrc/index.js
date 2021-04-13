@@ -631,7 +631,9 @@ $(document).ready(async function() {
                 reward: gameData.rewardStr,
                 points: gameData.points,
                 eventName: params.get('eventName'),
-                recordId: params.get('recordId')
+                recordId: params.get('recordId'),
+                redcapRewardField: params.get('redcapRewardField'),
+                redcapCsvField: params.get('redcapCsvField')
             });
             submissionId = sendRes.submissionId;
         }

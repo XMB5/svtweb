@@ -13,12 +13,10 @@ const accessPromise = promisify(fs.access);
 
 class SubmissionSaver {
 
-    constructor({submissionsDir, redcapApiUrl, redcapApiToken, redcapCsvField, redcapRewardField}) {
+    constructor({submissionsDir, redcapApiUrl, redcapApiToken}) {
         this.submissionsDir = submissionsDir;
         this.redcapApiUrl = redcapApiUrl;
         this.redcapApiToken = redcapApiToken;
-        this.redcapCsvField = redcapCsvField;
-        this.redcapRewardField = redcapRewardField;
         if (this.isSavingToRedcap()) {
             this.redcapAxios = axios.create({
                 method: 'POST',
@@ -98,9 +96,18 @@ class SubmissionSaver {
         throw new Error('failed to save submission after multiple tries');
     }
 
-    async saveCsvToRedcap({csvStr, submissionId, reward, eventName, recordId}) {
+    async saveCsvToRedcap({csvStr, submissionId, reward, eventName, recordId, redcapCsvField, redcapRewardField}) {
         if (!recordId) {
             throw new Error('empty recordId, required when submitting to redcap');
+        }
+        if (typeof(reward) !== 'string') {
+            throw new Error('missing or invalid reward');
+        }
+        if (typeof(redcapRewardField) !== 'string') {
+            throw new Error('missing or invalid redcapRewardField');
+        }
+        if (typeof(redcapCsvField) !== 'string') {
+            throw new Error('missing or invalid redcapCsvField');
         }
 
         //save csv file
@@ -110,14 +117,14 @@ class SubmissionSaver {
         fileForm.append('action', 'import');
         fileForm.append('returnFormat', 'json');
         fileForm.append('record', recordId);
-        fileForm.append('field', this.redcapCsvField);
+        fileForm.append('field', redcapCsvField);
         if (eventName) {
             fileForm.append('event', eventName);
         }
         const filename = submissionId + '.csv';
         fileForm.append('filename', filename);
         fileForm.append('file', csvStr, {filename});
-        log('save csv in redcap for submission id', submissionId);
+        log('save csv for submission id', submissionId, 'in redcap field', redcapCsvField);
         const fileRes = await this.redcapAxios({
             data: fileForm,
             headers: fileForm.getHeaders()
@@ -127,10 +134,10 @@ class SubmissionSaver {
         }
 
         //save reward
-        if (this.redcapRewardField) {
+        if (redcapRewardField) {
             const record = {
                 'record': recordId,
-                'field_name': this.redcapRewardField,
+                'field_name': redcapRewardField,
                 'value': reward
             };
             if (eventName) {
@@ -146,7 +153,7 @@ class SubmissionSaver {
             rewardForm.append('returnContent', 'nothing');
             rewardForm.append('returnFormat', 'json');
             rewardForm.append('data', JSON.stringify([record]));
-            log('save reward in redcap for submission id', submissionId);
+            log('save reward for submission id', submissionId, 'in redcap field', redcapRewardField);
             const rewardRes = await this.redcapAxios({
                 data: rewardForm,
                 headers: rewardForm.getHeaders()
@@ -158,10 +165,6 @@ class SubmissionSaver {
     }
 
     async saveSubmission(submissionObj) {
-        if (this.isSavingToRedcap() && submissionObj.reward === undefined) {
-            throw new Error('missing reward');
-        }
-
         const recordId = submissionObj['recordId'];
         const eventName = submissionObj['eventName'];
 
@@ -185,7 +188,9 @@ class SubmissionSaver {
                     submissionId,
                     reward: submissionObj.reward,
                     recordId,
-                    eventName
+                    eventName,
+                    redcapRewardField: submissionObj.redcapRewardField,
+                    redcapCsvField: submissionObj.redcapCsvField
                 });
             } catch (e) {
                 if (this.isSavingToFile()) {

@@ -51,9 +51,7 @@ const init = async () => {
     const submissionSaver = new SubmissionSaver({
         submissionsDir: process.env.SVTWEB_SUBMISSIONS_DIR,
         redcapApiUrl: process.env.SVTWEB_REDCAP_API_URL,
-        redcapApiToken,
-        redcapCsvField: process.env.SVTWEB_REDCAP_CSV_FIELD,
-        redcapRewardField: process.env.SVTWEB_REDCAP_REWARD_FIELD
+        redcapApiToken
     });
 
     if (submissionSaver.isSavingToFile()) {
@@ -64,8 +62,6 @@ const init = async () => {
             throw new Error('redcap api url set, but missing redcap api token');
         }
         log('submissions will be saved to redcap at api url', submissionSaver.redcapApiUrl,
-            'in csv field', submissionSaver.redcapCsvField,
-            'with reward field', submissionSaver.redcapRewardField || '(none)',
             'with api token of length', submissionSaver.redcapApiToken.length);
     }
     if (!submissionSaver.isSavingToRedcap() && !submissionSaver.isSavingToFile()) {
