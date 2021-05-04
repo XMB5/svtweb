@@ -13,66 +13,66 @@ const accessPromise = promisify(fs.access);
 
 class SubmissionSaver {
 
-    constructor({submissionsDir, redcapApiUrl, redcapApiToken}) {
+    constructor({submissionsDir, redcapConfigProvider}) {
         this.submissionsDir = submissionsDir;
-        this.redcapApiUrl = redcapApiUrl;
-        this.redcapApiToken = redcapApiToken;
-        if (this.isSavingToRedcap()) {
-            this.redcapAxios = axios.create({
-                method: 'POST',
-                baseURL: redcapApiUrl,
-                headers: {
-                    'Accept': 'application/json'
-                },
-                responseType: 'json',
-                validateStatus: undefined
-            });
-        }
+        this.redcapConfigProvider = redcapConfigProvider;
+        this.redcapAxios = axios.create({
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json'
+            },
+            responseType: 'json',
+            validateStatus: undefined
+        });
     }
 
     isSavingToFile() {
         return !!this.submissionsDir;
     }
 
-    isSavingToRedcap() {
-        return !!(this.redcapApiUrl);
-    }
-
-    async checkAccess(redcapAllowExport=false) {
+    async checkAccess() {
         if (this.isSavingToFile()) {
             log('check access for directory', this.submissionsDir);
             await accessPromise(this.submissionsDir, fs.constants.W_OK | fs.constants.X_OK);
         }
-        if (this.isSavingToRedcap()) {
-            log('check access to redcap api at url', this.redcapApiUrl);
-            //export project info request
-            const res = await this.redcapAxios({
-                data: querystring.stringify({
-                    token: this.redcapApiToken,
-                    content: 'project',
-                    format: 'json',
-                    returnFormat: 'json'
-                })
-            });
-            if (res.status === 403) {
-                if (res.data.error === 'You do not have API Export privileges') {
-                    //success
-                    //export privileges would be security risk
-                    //if hacker stole api token, they shouldn't be able to steal data
-                    log('redcap api token works, and token does not have export privileges')
-                } else if (res.data.error === 'You do not have permissions to use the API') {
-                    throw new Error('redcap api access forbidden (perhaps invalid api token?)');
-                } else {
-                    throw new Error('redcap error: ' + res.data.error)
-                }
-            } else if (res.status === 200) {
-                if (redcapAllowExport) {
-                    log('redcap allows exporting data, continuing because redcapAllowExport is true');
-                } else {
-                    throw new Error('redcap allows exporting data, forbidden unless redcapAllowExport is true');
+
+        const allConfigs = await this.redcapConfigProvider.getAllConfigs();
+        if (allConfigs.size === 0) {
+            log('no redcap configs to check access to');
+        } else {
+            for (const [configName, redcapConfig] of allConfigs) {
+                log('check redcap config', configName, 'with api url', redcapConfig.apiUrl, 'token of length', redcapConfig.token.length, 'and allow export', redcapConfig.allowExport);
+                //export project info request
+                const res = await this.redcapAxios({
+                    baseURL: redcapConfig.apiUrl,
+                    data: querystring.stringify({
+                        token: redcapConfig.token,
+                        content: 'project',
+                        format: 'json',
+                        returnFormat: 'json'
+                    })
+                });
+                if (res.status === 403) {
+                    if (res.data.error === 'You do not have API Export privileges') {
+                        //success
+                        //export privileges would be security risk
+                        //if hacker stole api token, they shouldn't be able to steal data
+                        log('redcap config', configName, 'api token works, and token does not have export privileges')
+                    } else if (res.data.error === 'You do not have permissions to use the API') {
+                        throw new Error('redcap api access forbidden (perhaps invalid api token?)');
+                    } else {
+                        throw new Error('redcap error: ' + res.data.error)
+                    }
+                } else if (res.status === 200) {
+                    if (redcapConfig.allowExport) {
+                        log('redcap config', configName, 'allows exporting data, continuing because allowExport is true');
+                    } else {
+                        log('!! WARNING !! redcap config', configName, 'allows exporting data but allowExport is false, could leak sensitive information if token is stolen');
+                    }
                 }
             }
         }
+
     }
 
     async saveCsvToFile(csvData, submissionId) {
@@ -96,7 +96,7 @@ class SubmissionSaver {
         throw new Error('failed to save submission after multiple tries');
     }
 
-    async saveCsvToRedcap({csvStr, submissionId, reward, eventName, recordId, redcapCsvField, redcapRewardField}) {
+    async saveCsvToRedcap({csvStr, submissionId, reward, eventName, recordId, redcapCsvField, redcapRewardField, redcapConfigName}) {
         if (!recordId) {
             throw new Error('empty recordId, required when submitting to redcap');
         }
@@ -109,10 +109,21 @@ class SubmissionSaver {
         if (typeof(redcapCsvField) !== 'string') {
             throw new Error('missing or invalid redcapCsvField');
         }
+        if (typeof(redcapConfigName) !== 'string') {
+            throw new Error('missing or invalid redcapConfigName');
+        }
+
+        const redcapConfig = await this.redcapConfigProvider.getConfig(redcapConfigName);
+        if (!redcapConfig) {
+            throw new Error('redcapConfigName provided, but config not found');
+        }
+        if (!redcapConfig.allowsFieldName(redcapCsvField) || !redcapConfig.allowsFieldName(redcapRewardField)) {
+            throw new Error('redcap field name not allowed');
+        }
 
         //save csv file
         const fileForm = new FormData();
-        fileForm.append('token', this.redcapApiToken);
+        fileForm.append('token', redcapConfig.token);
         fileForm.append('content', 'file');
         fileForm.append('action', 'import');
         fileForm.append('returnFormat', 'json');
@@ -126,6 +137,7 @@ class SubmissionSaver {
         fileForm.append('file', csvStr, {filename});
         log('save csv for submission id', submissionId, 'in redcap field', redcapCsvField);
         const fileRes = await this.redcapAxios({
+            baseURL: redcapConfig.apiUrl,
             data: fileForm,
             headers: fileForm.getHeaders()
         });
@@ -144,7 +156,7 @@ class SubmissionSaver {
                 record['redcap_event_name'] = eventName;
             }
             const rewardForm = new FormData();
-            rewardForm.append('token', this.redcapApiToken);
+            rewardForm.append('token', redcapConfig.token);
             rewardForm.append('content', 'record');
             rewardForm.append('format', 'json');
             rewardForm.append('type', 'eav');
@@ -155,6 +167,7 @@ class SubmissionSaver {
             rewardForm.append('data', JSON.stringify([record]));
             log('save reward for submission id', submissionId, 'in redcap field', redcapRewardField);
             const rewardRes = await this.redcapAxios({
+                baseURL: redcapConfig.apiUrl,
                 data: rewardForm,
                 headers: rewardForm.getHeaders()
             });
@@ -181,24 +194,23 @@ class SubmissionSaver {
         if (this.isSavingToFile()) {
             await this.saveCsvToFile(csvStr, submissionId);
         }
-        if (this.isSavingToRedcap()) {
-            try {
-                await this.saveCsvToRedcap({
-                    csvStr,
-                    submissionId,
-                    reward: submissionObj.reward,
-                    recordId,
-                    eventName,
-                    redcapRewardField: submissionObj.redcapRewardField,
-                    redcapCsvField: submissionObj.redcapCsvField
-                });
-            } catch (e) {
-                if (this.isSavingToFile()) {
-                    log('failed to save submission', submissionId, 'to redcap, but saved to file successfully, redcap error', e);
-                } else {
-                    log('failed to save submission', submissionId, 'to redcap, and not configured to save to file');
-                    throw e;
-                }
+        try {
+            await this.saveCsvToRedcap({
+                csvStr,
+                submissionId,
+                reward: submissionObj.reward,
+                recordId,
+                eventName,
+                redcapRewardField: submissionObj.redcapRewardField,
+                redcapCsvField: submissionObj.redcapCsvField,
+                redcapConfigName: submissionObj.redcapConfigName
+            });
+        } catch (e) {
+            if (this.isSavingToFile()) {
+                log('failed to save submission', submissionId, 'to redcap, but saved to file successfully, redcap error', e);
+            } else {
+                log('failed to save submission', submissionId, 'to redcap, and not configured to save to file');
+                throw e;
             }
         }
 

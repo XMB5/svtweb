@@ -3,11 +3,8 @@
 const Hapi = require('@hapi/hapi');
 const Inert = require('@hapi/inert');
 const SubmissionSaver = require('./SubmissionSaver.js');
+const RedcapConfigProvider = require('./RedcapConfigProvider.js');
 const log = require('./log.js')('main');
-const fs = require('fs');
-const {promisify} = require('util');
-
-const readFilePromise = promisify(fs.readFile);
 
 // self-signed secp256r1 tls key and cert
 const TLS_KEY = `-----BEGIN EC PRIVATE KEY-----
@@ -40,36 +37,22 @@ const init = async () => {
         log('not serving static files (environment variable SVTWEB_STATIC_DIR is empty)');
     }
 
-    const redcapApiTokenFile = process.env.SVTWEB_REDCAP_API_TOKEN_FILE;
-    let redcapApiToken;
-    if (redcapApiTokenFile) {
-        log('read api token file', redcapApiTokenFile);
-        redcapApiToken = (await readFilePromise(redcapApiTokenFile, 'utf8')).trim();
-    } else {
-        redcapApiToken = '';
-    }
+    const redcapConfigsFile = process.env.SVTWEB_REDCAP_CONFIGS_FILE;
+    const redcapConfigProvider = new RedcapConfigProvider(redcapConfigsFile);
+    await redcapConfigProvider.init();
+
     const submissionSaver = new SubmissionSaver({
         submissionsDir: process.env.SVTWEB_SUBMISSIONS_DIR,
-        redcapApiUrl: process.env.SVTWEB_REDCAP_API_URL,
-        redcapApiToken
+        redcapConfigProvider
     });
 
     if (submissionSaver.isSavingToFile()) {
         log('submission will be saved to directory', submissionSaver.submissionsDir);
-    }
-    if (submissionSaver.isSavingToRedcap()) {
-        if (!submissionSaver.redcapApiToken) {
-            throw new Error('redcap api url set, but missing redcap api token');
-        }
-        log('submissions will be saved to redcap at api url', submissionSaver.redcapApiUrl,
-            'with api token of length', submissionSaver.redcapApiToken.length);
-    }
-    if (!submissionSaver.isSavingToRedcap() && !submissionSaver.isSavingToFile()) {
-        log('submissions will not be saved anywhere');
+    } else {
+        log('warning, submissions will not be saved to file, if redcap fails submissions will be lost');
     }
 
-    const redcapAllowExport = process.env.SVTWEB_REDCAP_ALLOW_EXPORT === '1';
-    await submissionSaver.checkAccess(redcapAllowExport);
+    await submissionSaver.checkAccess();
 
     const port = parseInt(process.env.SVTWEB_PORT) || 9090;
     const host = process.env.SVTWEB_HOST || 'localhost';

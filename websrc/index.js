@@ -633,7 +633,8 @@ $(document).ready(async function() {
                 eventName: params.get('eventName'),
                 recordId: params.get('recordId'),
                 redcapRewardField: params.get('redcapRewardField'),
-                redcapCsvField: params.get('redcapCsvField')
+                redcapCsvField: params.get('redcapCsvField'),
+                redcapConfigName: params.get('redcapConfigName')
             });
             submissionId = sendRes.submissionId;
         }
