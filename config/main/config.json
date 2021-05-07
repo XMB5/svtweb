@@ -10,9 +10,11 @@
   "formText": {
     "nextButton": "Next"
   },
+  "endScreenWhenRedirecting": true,
   "endScreenText": {
     "heading": "Finished!",
-    "body": "Reward: %REWARD%\nSubmission ID: %SUBMISSION_ID%"
+    "body": "Reward: %REWARD%\nSubmission ID: %SUBMISSION_ID%",
+    "nextButton": "Next"
   },
   "noReward": "$0",
   "rewards": [

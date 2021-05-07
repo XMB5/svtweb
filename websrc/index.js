@@ -601,10 +601,18 @@ $(document).ready(async function() {
         window.removeEventListener('beforeunload', onBeforeUnloadCb);
     }
 
-    function showEndScreen(rewardStr, submissionId) {
+    function showEndScreen(rewardStr, submissionId, nextUrl) {
         endScreen.append($('<h3>').text(config.endScreenText.heading));
         const body = config.endScreenText.body.replace('%SUBMISSION_ID%', submissionId).replace('%REWARD%', rewardStr);
         endScreen.append($('<p class="text-with-whitespace">').text(body));
+        if (nextUrl) {
+            const nextButton = $('<button type="button" class="btn btn-secondary"></button>');
+            nextButton.text(config.endScreenText.nextButton);
+            nextButton.click(() => {
+                window.location = nextUrl;
+            });
+            endScreen.append(nextButton);
+        }
         endScreen.show();
     }
 
@@ -640,10 +648,10 @@ $(document).ready(async function() {
         }
         dontWarnOnLeave();
         const nextUrl = params.get('nextUrl');
-        if (nextUrl) {
+        if (nextUrl && !config.endScreenWhenRedirecting) {
             window.location = nextUrl;
         } else {
-            showEndScreen(gameData ? gameData.rewardStr : 'none', submissionId || 'none');
+            showEndScreen(gameData ? gameData.rewardStr : 'none', submissionId || 'none', nextUrl);
         }
 
     }
